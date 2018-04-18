@@ -1,0 +1,48 @@
+CodingStandards: This file is subject to change throughout the course of the project. If there needs to be a change or something added, contact the project manager so that we can discuss it.
+##############################################################################
+JDK: Java: 1.8.0_162
+##############################################################################
+FORMATTING:
+For our bracket formatting we are choosing to use new lines. So for example:
+private void function()
+{
+   //some code
+}
+As we know that netbeans formats the brackets differently we can change the settings by doing the following.
+1.	Navigate to Tools -> Options -> Editor
+2.	Navigate to Editor -> Formatting
+3.	Select the following
+a.	Language: Java
+b.	Category: Braces
+4.	In “Class Declaration”, “Method Declaration”, “Other”
+a.	Braces Placement: New Line
+To avoid any problems, before saving and especially before commits in Git, do Ctrl+A to select all of the code in the .java file and then do Alt+Shift+F
+This will not only place brackets where they should be according to our new settings for NetBeans, it will format just about everything such as spaces on each side of an operator.
+##############################################################################
+COMMENTS:
+We will use the javadoc comments (/***Enter) for all classes and functions for easability.
+For other comments, we will add them where they seem appropriate.
+##############################################################################
+ERROR HANDLING:
+Use exception handling as needed to ensure we don’t miss any of them. Make sure that you use the proper log method that we decide on as a team for catches.
+
+We will more than likely create our own logging method for errors soon. The details of this log class will be updated here once it has been completely designed along with examples on how to use it. In hindsight we do know that we will be using some form of code to dictate where the error is happening and what type of error it may be. The log might be stored in a text or dat file within the project directory.
+
+If there is an error that should just be ignored, catch the exception and print it to the console, but allow the program to continue execution. This is needed sometimes. An example is when you traverse directories. In windows, some directories visible by java are actually junctions. isHidden() will return false, isDirectory() will return true, and canRead() will return true... however, when you have java attempt to list the files within the directory, it will cause an exception. Since a try and catch is the only way to test for junctions, the exception must simply be ignored so that the program can continue on.
+##############################################################################
+INSTANTIATION AND INITIALIZATION
+All instantiation and initialization should be at the top of functions. An exception to this is when you need to create only temporary variables and objects used within an inner block of code, such as a loop.
+##############################################################################
+NAMING CONVENTION
+
+##############################################################################
+CLASS FILE ORGANIZATION
+data variables
+constructors
+setters and getters (properties)
+public functions
+protected functions
+private functions
+subclasses
+##############################################################################
+
