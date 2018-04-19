@@ -37,7 +37,7 @@ public class MainMenuForm extends GridPane
     private Button printBtn = new Button("Print");
     
     //main menu images
-    private Image dishImage = new Image("images/utb.jpg");
+    private Image dishImage = new Image("images/tortellini.jpg");
     private ImageView dishIV = new ImageView(dishImage);
 
     public MainMenuForm()
