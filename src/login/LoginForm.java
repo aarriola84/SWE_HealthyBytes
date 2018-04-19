@@ -1,8 +1,10 @@
-package gui;
+package login;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -10,7 +12,7 @@ import javafx.scene.layout.VBox;
 /**
  * @author Alexis Arriola
  */
-public class LoginView extends GridPane
+public class LoginForm extends GridPane
 {
     //boxes
     private HBox buttonBox = new HBox(2);
@@ -28,24 +30,34 @@ public class LoginView extends GridPane
     private Button loginButton = new Button("Login");
     private Button registerButton = new Button("Register");
     
+    //login images
+    private Image loginImage = new Image("images/hb.jpg");
+    private ImageView loginIV = new ImageView(loginImage);
+    
     //constructor
-    public LoginView()
+    public LoginForm()
     {
+        //resize image
+        loginIV.setFitHeight(200);
+        loginIV.setFitWidth(300);
+        
         //add to button box
         buttonBox.getChildren().addAll(loginButton, registerButton);
         
+        //add to form box
         formBox.getChildren().addAll(emailLabel, emailTF, passLabel, passTF, buttonBox);
         
         //add all fields to the GridPane
-        this.add(formBox, 0,0);
-        this.add(buttonBox, 0, 1);
+        this.add(loginIV, 0,0);
+        this.add(formBox, 0,1);
+        this.add(buttonBox, 0, 2);
     }
     
     //properties
     /**
      * @return the emailLabel
      */
-    public Label getEmailLabel()
+    public Label GetEmailLabel()
     {
         return emailLabel;
     }
@@ -53,7 +65,7 @@ public class LoginView extends GridPane
     /**
      * @param emailLabel the emailLabel to set
      */
-    public void setEmailLabel(Label emailLabel)
+    public void SetEmailLabel(Label emailLabel)
     {
         this.emailLabel = emailLabel;
     }
@@ -61,7 +73,7 @@ public class LoginView extends GridPane
     /**
      * @return the passLabel
      */
-    public Label getPassLabel()
+    public Label GetPassLabel()
     {
         return passLabel;
     }
@@ -69,7 +81,7 @@ public class LoginView extends GridPane
     /**
      * @param passLabel the passLabel to set
      */
-    public void setPassLabel(Label passLabel)
+    public void SetPassLabel(Label passLabel)
     {
         this.passLabel = passLabel;
     }
@@ -77,7 +89,7 @@ public class LoginView extends GridPane
     /**
      * @return the emailTF
      */
-    public TextField getEmailTF()
+    public TextField GetEmailTF()
     {
         return emailTF;
     }
@@ -85,7 +97,7 @@ public class LoginView extends GridPane
     /**
      * @param emailTF the emailTF to set
      */
-    public void setEmailTF(TextField emailTF)
+    public void SetEmailTF(TextField emailTF)
     {
         this.emailTF = emailTF;
     }
@@ -93,7 +105,7 @@ public class LoginView extends GridPane
     /**
      * @return the passTF
      */
-    public TextField getPassTF()
+    public TextField GetPassTF()
     {
         return passTF;
     }
@@ -101,7 +113,7 @@ public class LoginView extends GridPane
     /**
      * @param passTF the passTF to set
      */
-    public void setPassTF(TextField passTF)
+    public void SetPassTF(TextField passTF)
     {
         this.passTF = passTF;
     }
@@ -109,7 +121,7 @@ public class LoginView extends GridPane
     /**
      * @return the buttonBox
      */
-    public HBox getButtonBox()
+    public HBox GetButtonBox()
     {
         return buttonBox;
     }
@@ -117,7 +129,7 @@ public class LoginView extends GridPane
     /**
      * @param buttonBox the buttonBox to set
      */
-    public void setButtonBox(HBox buttonBox)
+    public void SetButtonBox(HBox buttonBox)
     {
         this.buttonBox = buttonBox;
     }
@@ -125,7 +137,7 @@ public class LoginView extends GridPane
     /**
      * @return the loginButton
      */
-    public Button getLoginButton()
+    public Button GetLoginBtn()
     {
         return loginButton;
     }
@@ -133,7 +145,7 @@ public class LoginView extends GridPane
     /**
      * @param loginButton the loginButton to set
      */
-    public void setLoginButton(Button loginButton)
+    public void SetLoginBtn(Button loginButton)
     {
         this.loginButton = loginButton;
     }
@@ -141,7 +153,7 @@ public class LoginView extends GridPane
     /**
      * @return the registerButton
      */
-    public Button getRegisterButton()
+    public Button GetRegisterBtn()
     {
         return registerButton;
     }
@@ -149,7 +161,7 @@ public class LoginView extends GridPane
     /**
      * @param registerButton the registerButton to set
      */
-    public void setRegisterButton(Button registerButton)
+    public void SetRegisterBtn(Button registerButton)
     {
         this.registerButton = registerButton;
     }

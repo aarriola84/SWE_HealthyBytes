@@ -1,20 +1,23 @@
 package healthybytes;
 
-import gui.LoginView;
+import login.LoginView;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 /**
  * @author Alexis Arriola
  */
 public class MainView extends BorderPane
 {
-    //the different views
-    LoginView loginView = new LoginView();
-    
     public MainView()
     {
-        loginView.setAlignment(Pos.CENTER);
+        
+    }
+    
+    public void SetCurrentView(Pane loginView)
+    {
+        this.setStyle("-fx-background-color: #ff8800;");
         this.setCenter(loginView);
     }
 }

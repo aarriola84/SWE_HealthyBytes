@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package gui;
+package login;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,7 +17,7 @@ import javafx.scene.text.FontWeight;
  * Date: April 18, 2018
  * Revision Date: April 18, 2018
  */
-public class RegisterView extends GridPane
+public class RegisterForm extends GridPane
 {
     private Label titleLabel = new Label ("User Registration Form");
     private Label errorLabel = new Label ("Duplicate Username and/or password.\nEnter unique username and password");
@@ -150,7 +145,7 @@ public class RegisterView extends GridPane
     /**
      * @return the errorLabel
      */
-    public Label getErrorLabel()
+    public Label GetErrorLabel()
     {
         return errorLabel;
     }
@@ -158,7 +153,7 @@ public class RegisterView extends GridPane
     /**
      * @param errorLabel the errorLabel to set
      */
-    public void setErrorLabel(Label errorLabel)
+    public void SetErrorLabel(Label errorLabel)
     {
         this.errorLabel = errorLabel;
     }
@@ -166,7 +161,7 @@ public class RegisterView extends GridPane
     /**
      * Main RegisterView GUI Start Up
      */
-    public RegisterView()
+    public RegisterForm()
     {
         titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 40));
         labelTFVBox.getChildren().addAll(usernameLabel,usernameTF,passwordLabel,passwordTF);

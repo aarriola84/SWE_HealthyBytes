@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package gui;
+package login;
 
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -23,7 +19,7 @@ import javafx.scene.text.FontWeight;
  *
  * @author Luis G
  */
-public class MainMenuView extends GridPane
+public class MainMenuForm extends GridPane
 {
     // Main menu labels and others
     private Label search = new Label("Search: ");
@@ -41,10 +37,10 @@ public class MainMenuView extends GridPane
     private Button printBtn = new Button("Print");
     
     //main menu images
-    private Image dishImage = new Image("utb.jpg");
+    private Image dishImage = new Image("images/utb.jpg");
     private ImageView dishIV = new ImageView(dishImage);
 
-    public MainMenuView()
+    public MainMenuForm()
     {
         //format title label 
         title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 20));
@@ -54,7 +50,6 @@ public class MainMenuView extends GridPane
         this.setVgap(10);
 
         //vbox variables
-        VBox vbox0 = new VBox();
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
 
@@ -74,6 +69,8 @@ public class MainMenuView extends GridPane
         this.add(hbox1, 1, 1);
         this.add(vbox2, 1, 2);
         this.add(hbox2, 1, 3);
+        
+        this.setAlignment(Pos.CENTER);
 
     }
 
