@@ -30,6 +30,22 @@ public class RegisterForm extends GridPane
     VBox labelTFVBox = new VBox(10);
     HBox buttonHBox = new HBox(5);
 
+    //constructors
+    /**
+     * Main RegisterView GUI Start Up
+     */
+    public RegisterForm()
+    {
+        titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 40));
+        labelTFVBox.getChildren().addAll(usernameLabel,usernameTF,passwordLabel,passwordTF);
+        buttonHBox.getChildren().addAll(registerBtn,cancelBtn);
+        this.add(titleLabel,0,0);
+        this.add(labelTFVBox,0,1);
+        this.add(buttonHBox,0,2);
+        this.setAlignment(Pos.CENTER);
+    }
+    
+    //properties
     /**
      * @return the titleLabel
      */
@@ -156,20 +172,6 @@ public class RegisterForm extends GridPane
     public void SetErrorLabel(Label errorLabel)
     {
         this.errorLabel = errorLabel;
-    }
-    
-    /**
-     * Main RegisterView GUI Start Up
-     */
-    public RegisterForm()
-    {
-        titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 40));
-        labelTFVBox.getChildren().addAll(usernameLabel,usernameTF,passwordLabel,passwordTF);
-        buttonHBox.getChildren().addAll(registerBtn,cancelBtn);
-        this.add(titleLabel,0,0);
-        this.add(labelTFVBox,0,1);
-        this.add(buttonHBox,0,2);
-        this.setAlignment(Pos.CENTER);
     }
     
     /**

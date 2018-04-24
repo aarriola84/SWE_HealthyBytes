@@ -1,4 +1,4 @@
-package login;
+package mainmenu;
 
 
 import javafx.geometry.Pos;

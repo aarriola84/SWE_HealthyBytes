@@ -7,24 +7,21 @@ import login.LoginController;
  */
 public class MainController 
 {
-    //models
-    MainModel mainModel;
-    
-    //views
-    MainView mainView;
-    
     //controllers
     LoginController loginController;
     
-    public MainController(MainModel mainMdl, MainView mainView,LoginController loginController)
+    public MainController(LoginController loginController)
     {
-        this.mainModel = mainMdl;
-        this.mainView = mainView;
+        //set controllers
         this.loginController = loginController;
-        mainView.SetCurrentView(loginController.GetLoginView());
+        
+        //attach handlers
         AttachHandlers();
     }
     
+    /***
+     * Attaches handlers for all of the different controllers.
+     */
     public void AttachHandlers()
     {
         loginController.attachHandlers();

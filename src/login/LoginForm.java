@@ -1,5 +1,6 @@
 package login;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -51,6 +52,8 @@ public class LoginForm extends GridPane
         this.add(loginIV, 0,0);
         this.add(formBox, 0,1);
         this.add(buttonBox, 0, 2);
+        
+        this.setAlignment(Pos.CENTER);
     }
     
     //properties

@@ -2,36 +2,49 @@ package login;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * @author Alexis Arriola
  */
 public class LoginController 
 {
+    //stage ref
+    Stage mainStage;
+    
+    //scenes
+    Scene mainMenuScene;
 
     //views
     private LoginView loginView;
     
-    //models
+    //model
+    private LoginModel loginModel;
     
-    public LoginController(LoginView loginView)
+    //constructor
+    public LoginController(Stage mainStage, LoginView loginView, LoginModel loginModel, Scene mainMenuScene)
     {
+        this.mainStage = mainStage;
         this.loginView = loginView;
+        this.mainMenuScene = mainMenuScene;
+        this.loginModel = loginModel;
     }
     
     public void attachHandlers()
     {
-        //login view buttons
+        //login form buttons
         GetLoginView().GetLoginForm().GetLoginBtn().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)
                      {
-                         GetLoginView().SetMainMenuForm();
+                         mainStage.setScene(mainMenuScene);
                      }
                 });
         
-        GetLoginView().GetLoginForm().GetRegisterBtn().setOnAction(new EventHandler<ActionEvent>()
+        GetLoginView().GetLoginForm().GetRegisterBtn().setOnAction(
+                new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)
                      {
@@ -39,7 +52,7 @@ public class LoginController
                      }
                 });
         
-        //register view buttons
+        //register form buttons
         GetLoginView().GetRegisterForm().GetRegisterBtn().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
@@ -71,5 +84,20 @@ public class LoginController
     public void SetLoginView(LoginView loginView)
     {
         this.loginView = loginView;
+    }
+     /**
+     * @return the loginModel
+     */
+    public LoginModel GetLoginModel()
+    {
+        return loginModel;
+    }
+
+    /**
+     * @param loginModel the loginModel to set
+     */
+    public void SetLoginModel(LoginModel loginModel)
+    {
+        this.loginModel = loginModel;
     }
 }

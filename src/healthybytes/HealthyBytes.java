@@ -4,28 +4,47 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import login.LoginController;
+import login.LoginModel;
 import login.LoginView;
+import mainmenu.MainMenuView;
 
 /**
  * @authors "Night owls"
  */
 public class HealthyBytes extends Application
 {
-    MainView mainView = new MainView();
-    MainModel mainModel = new MainModel();
+    //stage
+    Stage mainStage;
+    
+    //views
     LoginView loginView = new LoginView();
-    LoginController lc = new LoginController(loginView);
-    MainController mc = new MainController(mainModel,mainView, lc);
+    MainMenuView mainMenuView = new MainMenuView();
+    
+    //models
+    LoginModel loginModel = new LoginModel();
+    
+    //scenes
+    Scene loginScene = new Scene(loginView, 900, 700);
+    Scene mainMenuScene = new Scene(mainMenuView, 900, 700);
+    
+    //controllers
+    LoginController lc;
+    MainController mc;
     
     @Override
     public void start(Stage primaryStage)
     {
+        //set stage instance
+        mainStage = primaryStage;
         
-        Scene scene = new Scene(mainView, 900, 700);
+        //setup controllers
+        lc = new LoginController(mainStage, loginView, loginModel, mainMenuScene);
+        mc = new MainController(lc);
         
-        primaryStage.setTitle("Healthy Bytes");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        //show intial scene
+        mainStage.setTitle("Healthy Bytes");
+        mainStage.setScene(loginScene);
+        mainStage.show();
     }
 
     /**
