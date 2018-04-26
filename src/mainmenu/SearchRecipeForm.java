@@ -5,10 +5,13 @@
  */
 package mainmenu;
 
+import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -52,15 +55,26 @@ public class SearchRecipeForm extends GridPane
 
     //text area for description of item
     private TextArea foodDescripTA = new TextArea();
+    
+    //listview variable and fill in food items for now
+    private String[] recipes = {"Pizza", "Spaghetti", "Salad", "Chicken Salad", "Beef Salad"};
+    private ListView<String> listView = new ListView<>(FXCollections.observableArrayList(recipes));
+    
+    
+    
 
     public SearchRecipeForm()
     {
+        listView.setPrefSize(400, 400);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
         //formatting title
         title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 20));
         
         //creating v and h boxes and setting distance
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
+        VBox vbox3 = new VBox();
         HBox hbox1 = new HBox();
         
         this.setHgap(10);
@@ -68,14 +82,17 @@ public class SearchRecipeForm extends GridPane
         
         this.getChildren().clear();
         vbox1.getChildren().addAll(cbChicken, cbBeef, cbFish, cbPork, cbLamb, cbVege, cbVegan);
-        vbox2.getChildren().addAll(foodDescrip, foodDescripTA);
+        vbox2.getChildren().addAll(title, listView);
+        vbox3.getChildren().addAll(foodDescrip, foodDescripTA);
         hbox1.getChildren().addAll(searchBtn, cancelBtn);
         vbox1.setAlignment(Pos.TOP_LEFT);
-        vbox2.setAlignment(Pos.CENTER_RIGHT);
+        vbox3.setAlignment(Pos.CENTER_RIGHT);
         hbox1.setAlignment(Pos.CENTER_LEFT);
         
         this.add(vbox1, 0, 0);
         this.add(hbox1, 0, 1);
+        this.add(vbox2, 1, 0);
+        this.add(vbox3, 2, 0);
         this.setAlignment(Pos.CENTER);
 
     }
