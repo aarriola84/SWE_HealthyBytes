@@ -27,6 +27,38 @@ import javafx.scene.text.FontWeight;
 public class SearchRecipeForm extends GridPane
 {
 
+    /**
+     * @return the recipes
+     */
+    public String[] getRecipes()
+    {
+        return recipes;
+    }
+
+    /**
+     * @param recipes the recipes to set
+     */
+    public void setRecipes(String[] recipes)
+    {
+        this.setRecipes(recipes);
+    }
+
+    /**
+     * @return the listView
+     */
+    public ListView<String> getListView()
+    {
+        return listView;
+    }
+
+    /**
+     * @param listView the listView to set
+     */
+    public void setListView(ListView<String> listView)
+    {
+        this.listView = listView;
+    }
+
     //labels
     private Label title = new Label("Find your selection!");
     private Label foodDescrip = new Label("Description: ");
@@ -400,4 +432,5 @@ public class SearchRecipeForm extends GridPane
     {
         this.foodDescrip = foodDescrip;
     }
+
 }
