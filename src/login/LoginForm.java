@@ -3,12 +3,16 @@ package login;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  * @author Alexis Arriola
@@ -25,22 +29,26 @@ public class LoginForm extends GridPane
     
     //textfields
     private TextField emailTF = new TextField();
-    private TextField passTF = new TextField();
+    private PasswordField passTF = new PasswordField();
     
     //buttons
     private Button loginButton = new Button("Login");
     private Button registerButton = new Button("Register");
     
     //login images
-    private Image loginImage = new Image("images/hb.jpg");
+    private Image loginImage = new Image("images/hb.png");
     private ImageView loginIV = new ImageView(loginImage);
     
     //constructor
     public LoginForm()
     {
         //resize image
-        loginIV.setFitHeight(200);
-        loginIV.setFitWidth(300);
+        loginIV.setFitHeight(350);
+        loginIV.setFitWidth(400);
+        
+        //change label
+        emailLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        passLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 16));
         
         //add to button box
         buttonBox.getChildren().addAll(loginButton, registerButton);
@@ -48,11 +56,11 @@ public class LoginForm extends GridPane
         //add to form box
         formBox.getChildren().addAll(emailLabel, emailTF, passLabel, passTF, buttonBox);
         
-        //add all fields to the GridPane
-        this.add(loginIV, 0,0);
-        this.add(formBox, 0,1);
+        //add all fields to the VBox
+        this.add(loginIV, 0, 0);
+        this.add(formBox, 0, 1);
         this.add(buttonBox, 0, 2);
-        
+       
         this.setAlignment(Pos.CENTER);
     }
     
@@ -108,7 +116,7 @@ public class LoginForm extends GridPane
     /**
      * @return the passTF
      */
-    public TextField GetPassTF()
+    public PasswordField GetPassTF()
     {
         return passTF;
     }
@@ -116,7 +124,7 @@ public class LoginForm extends GridPane
     /**
      * @param passTF the passTF to set
      */
-    public void SetPassTF(TextField passTF)
+    public void SetPassTF(PasswordField passTF)
     {
         this.passTF = passTF;
     }
