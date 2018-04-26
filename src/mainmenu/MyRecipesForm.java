@@ -6,21 +6,25 @@
 package mainmenu;
 
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  *
  * @author Matthew Rodriguez
+ * Date: April 26, 2018
  */
-public class MyRecipesForm extends BorderPane
+public class MyRecipesForm extends GridPane
 {
     private String[] foodTitles = 
     {
@@ -40,19 +44,21 @@ public class MyRecipesForm extends BorderPane
        new Label("This is a recipe about lasagna."),
     };
     
-    private ListView<String> listview = new ListView<>(FXCollections.observableArrayList(foodTitles)); // ArrayList to hold things
-    private FlowPane listpane = new FlowPane (10,10);
+    private ListView<String> listView = new ListView<>(FXCollections.observableArrayList(foodTitles)); // ArrayList to hold things
+    private FlowPane listPane = new FlowPane (10,10);
 
     private Label titleLabel = new Label("My Recipes");
     private Button viewrecipeBtn = new Button("View Recipe");
     private Button createrecipeBtn = new Button("Create Recipe");
     private Button shareBtn = new Button ("Share Button");
+    Button backtomainmenuBtn = new Button("Back To Main Menu");
     
-    
+    HBox imagehbox = new HBox(10);
+    HBox buttonbox = new HBox(30);
     /**
      * @return the foodTitles
      */
-    public String[] getFoodTitles()
+    public String[] GetFoodTitles()
     {
         return foodTitles;
     }
@@ -60,7 +66,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @param foodTitles the foodTitles to set
      */
-    public void setFoodTitles(String[] foodTitles)
+    public void SetFoodTitles(String[] foodTitles)
     {
         this.foodTitles = foodTitles;
     }
@@ -68,7 +74,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @return the foodDescription2
      */
-    public Label[] getFoodDescription2()
+    public Label[] GetFoodDescription2()
     {
         return foodDescription2;
     }
@@ -76,47 +82,47 @@ public class MyRecipesForm extends BorderPane
     /**
      * @param foodDescription2 the foodDescription2 to set
      */
-    public void setFoodDescription2(Label[] foodDescription2)
+    public void SetFoodDescription2(Label[] foodDescription2)
     {
         this.foodDescription2 = foodDescription2;
     }
 
     /**
-     * @return the listview
+     * @return the listView
      */
-    public ListView<String> getListview()
+    public ListView<String> GetListView()
     {
-        return listview;
+        return listView;
     }
 
     /**
-     * @param listview the listview to set
+     * @param listView the listView to set
      */
-    public void setListview(ListView<String> listview)
+    public void SetListView(ListView<String> listView)
     {
-        this.listview = listview;
+        this.listView = listView;
     }
 
     /**
-     * @return the listpane
+     * @return the listPane
      */
-    public FlowPane getListpane()
+    public FlowPane GetListPane()
     {
-        return listpane;
+        return listPane;
     }
 
     /**
-     * @param listpane the listpane to set
+     * @param listpane the listPane to set
      */
-    public void setListpane(FlowPane listpane)
+    public void SetListPane(FlowPane listPane)
     {
-        this.listpane = listpane;
+        this.listPane = listPane;
     }
 
     /**
      * @return the titleLabel
      */
-    public Label getTitleLabel()
+    public Label GetTitleLabel()
     {
         return titleLabel;
     }
@@ -124,7 +130,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @param titleLabel the titleLabel to set
      */
-    public void setTitleLabel(Label titleLabel)
+    public void SetTitleLabel(Label titleLabel)
     {
         this.titleLabel = titleLabel;
     }
@@ -132,7 +138,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @return the viewrecipeBtn
      */
-    public Button getViewrecipeBtn()
+    public Button GetViewrecipeBtn()
     {
         return viewrecipeBtn;
     }
@@ -140,7 +146,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @param viewrecipeBtn the viewrecipeBtn to set
      */
-    public void setViewrecipeBtn(Button viewrecipeBtn)
+    public void SetViewRecipeBtn(Button viewrecipeBtn)
     {
         this.viewrecipeBtn = viewrecipeBtn;
     }
@@ -148,7 +154,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @return the createrecipeBtn
      */
-    public Button getCreaterecipeBtn()
+    public Button GetCreateRecipeBtn()
     {
         return createrecipeBtn;
     }
@@ -156,7 +162,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @param createrecipeBtn the createrecipeBtn to set
      */
-    public void setCreaterecipeBtn(Button createrecipeBtn)
+    public void SetCreateRecipeBtn(Button createrecipeBtn)
     {
         this.createrecipeBtn = createrecipeBtn;
     }
@@ -164,7 +170,7 @@ public class MyRecipesForm extends BorderPane
     /**
      * @return the shareBtn
      */
-    public Button getShareBtn()
+    public Button GetShareBtn()
     {
         return shareBtn;
     }
@@ -172,28 +178,29 @@ public class MyRecipesForm extends BorderPane
     /**
      * @param shareBtn the shareBtn to set
      */
-    public void setShareBtn(Button shareBtn)
+    public void SetShareBtn(Button shareBtn)
     {
         this.shareBtn = shareBtn;
     }
     
     public MyRecipesForm()
     {
-        listview.setPrefSize(400,400);
-        listview.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        this.setTop(titleLabel);
-        this.setLeft(new ScrollPane(getListpane()));
-        this.setCenter(listpane);
-        
-        listview.getSelectionModel().selectedItemProperty().addListener(
+        listView.setPrefSize(400,400);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        this.setAlignment(Pos.CENTER);
+        titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 50));
+        this.add(titleLabel,2,0);
+        imagehbox.getChildren().addAll(new ScrollPane(listView),listPane);
+        buttonbox.getChildren().addAll(viewrecipeBtn,createrecipeBtn,shareBtn,backtomainmenuBtn);
+        this.add(imagehbox,2,1);
+        this.add(buttonbox,2,2);       
+        listView.getSelectionModel().selectedItemProperty().addListener(
         e -> {
-             listpane.getChildren().clear();
-             for (Integer i : listview.getSelectionModel().getSelectedIndices())
+             listPane.getChildren().clear();
+             for (Integer i : listView.getSelectionModel().getSelectedIndices())
                 {
-                    listpane.getChildren().add(foodDescription2[i]);
+                    listPane.getChildren().add(foodDescription2[i]);
                 }
              });
-        this.setBottom(createrecipeBtn);
-        this.setBottom(shareBtn);
     }
 }
