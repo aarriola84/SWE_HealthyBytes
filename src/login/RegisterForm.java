@@ -19,14 +19,27 @@ import javafx.scene.text.FontWeight;
  */
 public class RegisterForm extends GridPane
 {
+    //labels
     private Label titleLabel = new Label ("User Registration Form");
     private Label errorLabel = new Label ("Duplicate Username and/or password.\nEnter unique username and password");
-    private Label usernameLabel = new Label("Enter User Name for Registration");
-    private Label passwordLabel = new Label("Enter password for Login Authentication");
+    private Label fNameLabel = new Label ("First name:");
+    private Label lNameLabel = new Label ("Last name:");
+    private Label usernameLabel = new Label("Email:");
+    private Label passwordLabel = new Label("Password:");
+    private Label dobLabel = new Label("Date of birth:");
+    
+    //textfields
+    private TextField fNameTF = new TextField();
+    private TextField lNameTF = new TextField();
     private TextField usernameTF = new TextField();
     private TextField passwordTF = new TextField();
+    private TextField dobTF = new TextField();
+    
+    //buttons
     private Button registerBtn = new Button("Register");
     private Button cancelBtn = new Button("Cancel");
+    
+    //boxes
     VBox labelTFVBox = new VBox(10);
     HBox buttonHBox = new HBox(5);
 
@@ -37,7 +50,8 @@ public class RegisterForm extends GridPane
     public RegisterForm()
     {
         titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 40));
-        labelTFVBox.getChildren().addAll(usernameLabel,usernameTF,passwordLabel,passwordTF);
+        labelTFVBox.getChildren().addAll(fNameLabel,fNameTF, lNameLabel, lNameTF,
+                                         usernameLabel,usernameTF,passwordLabel,passwordTF, dobLabel, dobTF);
         buttonHBox.getChildren().addAll(registerBtn,cancelBtn);
         this.add(titleLabel,0,0);
         this.add(labelTFVBox,0,1);
@@ -46,6 +60,38 @@ public class RegisterForm extends GridPane
     }
     
     //properties
+    //labels
+    /**
+     * @return the fNameLabel
+     */
+    public Label GetfNameLabel()
+    {
+        return fNameLabel;
+    }
+
+    /**
+     * @param fNameLabel the fNameLabel to set
+     */
+    public void SetfNameLabel(Label fNameLabel)
+    {
+        this.fNameLabel = fNameLabel;
+    }
+
+    /**
+     * @return the lNameLabel
+     */
+    public Label GetlNameLabel()
+    {
+        return lNameLabel;
+    }
+
+    /**
+     * @param lNameLabel the lNameLabel to set
+     */
+    public void SetlNameLabel(Label lNameLabel)
+    {
+        this.lNameLabel = lNameLabel;
+    }
     /**
      * @return the titleLabel
      */
@@ -93,7 +139,54 @@ public class RegisterForm extends GridPane
     {
         this.passwordLabel = passwordLabel;
     }
+    /**
+     * @return the dobLabel
+     */
+    public Label GetDobLabel()
+    {
+        return dobLabel;
+    }
 
+    /**
+     * @param dobLabel the dobLabel to set
+     */
+    public void SetDobLabel(Label dobLabel)
+    {
+        this.dobLabel = dobLabel;
+    }
+    
+    //textfields
+    /**
+     * @return the fNameTF
+     */
+    public TextField GetfNameTF()
+    {
+        return fNameTF;
+    }
+
+    /**
+     * @param fNameTF the fNameTF to set
+     */
+    public void SetfNameTF(TextField fNameTF)
+    {
+        this.fNameTF = fNameTF;
+    }
+
+    /**
+     * @return the lNameTF
+     */
+    public TextField GetlNameTF()
+    {
+        return lNameTF;
+    }
+
+    /**
+     * @param lNameTF the lNameTF to set
+     */
+    public void SetlNameTF(TextField lNameTF)
+    {
+        this.lNameTF = lNameTF;
+    }
     /**
      * @return the usernameTF
      */
@@ -125,7 +218,23 @@ public class RegisterForm extends GridPane
     {
         this.passwordTF = passwordTF;
     }
+    /**
+     * @return the dobTF
+     */
+    public TextField GetDobTF()
+    {
+        return dobTF;
+    }
 
+    /**
+     * @param dobTF the dobTF to set
+     */
+    public void SetDobTF(TextField dobTF)
+    {
+        this.dobTF = dobTF;
+    }
+    
+    //buttons
     /**
      * @return the registerBtn
      */
@@ -174,6 +283,15 @@ public class RegisterForm extends GridPane
         this.errorLabel = errorLabel;
     }
     
+    //functions
+    public void ClearTF()
+    {
+        fNameTF.clear();
+        lNameTF.clear();
+        usernameTF.clear();
+        passwordTF.clear();
+        dobTF.clear();
+    }
     /**
      * GUI is called when the username being entered
      */

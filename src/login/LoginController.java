@@ -34,39 +34,68 @@ public class LoginController
     public void attachHandlers()
     {
         //login form buttons
-        GetLoginView().GetLoginForm().GetLoginBtn().setOnAction(
+        loginView.GetLoginForm().GetLoginBtn().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)
                      {
-                         mainStage.setScene(mainMenuScene);
+                         String email = loginView.GetLoginForm().GetEmailTF().getText();
+                         String pass = loginView.GetLoginForm().GetPassTF().getText();
+                         
+                         boolean isValid = loginModel.VerifyUser(email, pass);
+                         
+                         if(isValid)
+                         {
+                             loginView.GetLoginForm().ClearTF();
+                             mainStage.setScene(mainMenuScene);
+                         }
+                         else
+                         {
+                             //some error
+                             System.out.println("Invalid User!");
+                         }
+                         
                      }
                 });
         
-        GetLoginView().GetLoginForm().GetRegisterBtn().setOnAction(
+        loginView.GetLoginForm().GetRegisterBtn().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)
                      {
-                         GetLoginView().SetRegisterForm();
+                         loginView.GetLoginForm().ClearTF();
+                         loginView.SetRegisterForm();
                      }
                 });
         
         //register form buttons
-        GetLoginView().GetRegisterForm().GetRegisterBtn().setOnAction(
+        loginView.GetRegisterForm().GetRegisterBtn().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)
                      {
+                         String fName = loginView.GetRegisterForm().GetfNameTF().getText();
+                         String lName = loginView.GetRegisterForm().GetlNameTF().getText();
+                         String email = loginView.GetRegisterForm().GetUsernameTF().getText();
+                         String pass = loginView.GetRegisterForm().GetPasswordTF().getText();
+                         String dob = loginView.GetRegisterForm().GetDobTF().getText();
+                         
+                         User newUser = new User(0,fName, lName, email, pass, dob);
+                         
                          //do database work here
+                         loginModel.RegisterUser(newUser);
+                         
+                         loginView.GetRegisterForm().ClearTF();
+                         loginView.SetLoginForm();
                      }
                 });
-         GetLoginView().GetRegisterForm().GetCancelBtn().setOnAction(
+         loginView.GetRegisterForm().GetCancelBtn().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)
                      {
-                         GetLoginView().SetLoginForm();
+                         loginView.GetRegisterForm().ClearTF();
+                         loginView.SetLoginForm();
                      }
                 });
     }
