@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -59,9 +60,19 @@ public class SearchRecipeForm extends GridPane
         this.listView = listView;
     }
 
+    //flowpane
+    private FlowPane listPane = new FlowPane(10,10);
+    
     //labels
     private Label title = new Label("Find your selection!");
-    private Label foodDescrip = new Label("Description: ");
+    private Label[] foodDescrip = 
+    {
+        new Label("A veggie pizza with diet cheese"),
+        new Label("Spaghetti with wheat noodles"),
+        new Label("Fresh salad with healthy choice "),
+        new Label("Chicken cut up with a side of salad"),
+        new Label("Beef cut up with a side of salad")
+    };
 
     //buttons
     private Button searchBtn = new Button("Search");
@@ -86,7 +97,7 @@ public class SearchRecipeForm extends GridPane
     private Boolean boolVegan = false;
 
     //text area for description of item
-    private TextArea foodDescripTA = new TextArea();
+    //private Label foodDescrip = new Label();
     
     //listview variable and fill in food items for now
     private String[] recipes = {"Pizza", "Spaghetti", "Salad", "Chicken Salad", "Beef Salad"};
@@ -115,7 +126,7 @@ public class SearchRecipeForm extends GridPane
         this.getChildren().clear();
         vbox1.getChildren().addAll(cbChicken, cbBeef, cbFish, cbPork, cbLamb, cbVege, cbVegan);
         vbox2.getChildren().addAll(title, listView);
-        vbox3.getChildren().addAll(foodDescrip, foodDescripTA);
+        vbox3.getChildren().addAll(foodDescrip);
         hbox1.getChildren().addAll(searchBtn, cancelBtn);
         vbox1.setAlignment(Pos.TOP_LEFT);
         vbox3.setAlignment(Pos.CENTER_RIGHT);
@@ -127,6 +138,15 @@ public class SearchRecipeForm extends GridPane
         this.add(vbox3, 2, 0);
         this.setAlignment(Pos.CENTER);
 
+        listView.getSelectionModel().selectedItemProperty().addListener(
+        e -> {
+            listPane.getChildren().clear();
+            for(Integer i: listView.getSelectionModel().getSelectedIndices())
+            {
+                listPane.getChildren().add(foodDescrip[i]);
+            }
+        });
+        
     }
 
     /**
@@ -401,26 +421,11 @@ public class SearchRecipeForm extends GridPane
         this.boolVegan = boolVegan;
     }
 
-    /**
-     * @return the foodDescripTA
-     */
-    public TextArea getFoodDescripTA()
-    {
-        return foodDescripTA;
-    }
-
-    /**
-     * @param foodDescripTA the foodDescripTA to set
-     */
-    public void setFoodDescripTA(TextArea foodDescripTA)
-    {
-        this.foodDescripTA = foodDescripTA;
-    }
 
     /**
      * @return the foodDescrip
      */
-    public Label getFoodDescrip()
+    public Label[] getFoodDescrip()
     {
         return foodDescrip;
     }
@@ -428,7 +433,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param foodDescrip the foodDescrip to set
      */
-    public void setFoodDescrip(Label foodDescrip)
+    public void setFoodDescrip(Label[] foodDescrip)
     {
         this.foodDescrip = foodDescrip;
     }
