@@ -1,7 +1,7 @@
 package login;
 
 /**
- * @author Alexis Arriola
+ * @author Ruben Olivares
  */
 public class User 
 {

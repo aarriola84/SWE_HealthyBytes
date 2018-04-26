@@ -1,9 +1,9 @@
 package mainmenu;
 
 /**
- * @author Alexis Arriola
+ * @author Ruben Olivares
  */
 public class Recipe 
 {
-
+    
 }
