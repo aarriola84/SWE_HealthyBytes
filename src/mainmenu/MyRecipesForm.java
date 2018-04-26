@@ -36,7 +36,8 @@ public class MyRecipesForm extends BorderPane
        new Label("This is a recipe about fresh chicken salad."),
        new Label("This is a recipe about simple fresh prepared salad."),
        new Label("This is a recipe about savory cooked lamb."),
-       new Label("This is a recipe about savory chicken."),
+       new Label("This is a recipe about tortellini."),
+       new Label("This is a recipe about lasagna."),
     };
     
     ListView<String> listview = new ListView<>(FXCollections.observableArrayList(foodTitles)); // ArrayList to hold things
