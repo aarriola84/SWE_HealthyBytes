@@ -5,5 +5,5 @@ package mainmenu;
  */
 public class Recipe 
 {
-
+    
 }
