@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 public class LoginView extends BorderPane
 {
     //background
-    private Image backgroundImg = new Image("images/hbGray.png");
+    private Image backgroundImg = new Image("images/hbBlue.png");
     private BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
     private Background background = new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));

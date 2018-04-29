@@ -46,7 +46,7 @@ public class MainMenuForm extends GridPane
         searchBtn.setPrefSize(400, 50);
         myRecipesBtn.setPrefSize(400, 50);
         logoutBtn.setPrefSize(400, 50);
-
+/*
         searchBtn.setStyle("-fx-background-color:\n"
                 + "        linear-gradient(#f0ff35, #a9ff00),\n"
                 + "        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n"
@@ -74,7 +74,7 @@ public class MainMenuForm extends GridPane
                 + "    -fx-font-weight: bold;\n"
                 + "    -fx-font-size: 20px;\n"
                 + "    -fx-padding: 10 20 10 20;");
-
+*/
         this.getChildren().clear();
         vbox1.getChildren().addAll(searchBtn, myRecipesBtn, logoutBtn);
 
