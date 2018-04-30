@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package mainmenu;
+package myrecipes;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -51,7 +46,7 @@ public class MyRecipesForm extends GridPane
     private Button viewrecipeBtn = new Button("View Recipe");
     private Button createrecipeBtn = new Button("Create Recipe");
     private Button shareBtn = new Button ("Share Button");
-    Button backtomainmenuBtn = new Button("Back To Main Menu");
+    private Button mainMenuBtn = new Button("Back To Main Menu");
     
     HBox imagehbox = new HBox(10);
     HBox buttonbox = new HBox(30);
@@ -138,7 +133,7 @@ public class MyRecipesForm extends GridPane
     /**
      * @return the viewrecipeBtn
      */
-    public Button GetViewrecipeBtn()
+    public Button GetViewRecipeBtn()
     {
         return viewrecipeBtn;
     }
@@ -183,6 +178,22 @@ public class MyRecipesForm extends GridPane
         this.shareBtn = shareBtn;
     }
     
+    /**
+     * @return the mainMenuBtn
+     */
+    public Button GetMainMenuBtn()
+    {
+        return mainMenuBtn;
+    }
+
+    /**
+     * @param mainMenuBtn the mainMenuBtn to set
+     */
+    public void SetMainMenuBtn(Button mainMenuBtn)
+    {
+        this.mainMenuBtn = mainMenuBtn;
+    }
+    
     public MyRecipesForm()
     {
         listView.setPrefSize(400,400);
@@ -191,7 +202,7 @@ public class MyRecipesForm extends GridPane
         titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 50));
         this.add(titleLabel,2,0);
         imagehbox.getChildren().addAll(new ScrollPane(listView),listPane);
-        buttonbox.getChildren().addAll(viewrecipeBtn,createrecipeBtn,shareBtn,backtomainmenuBtn);
+        buttonbox.getChildren().addAll(viewrecipeBtn,createrecipeBtn,shareBtn,mainMenuBtn);
         this.add(imagehbox,2,1);
         this.add(buttonbox,2,2);       
         listView.getSelectionModel().selectedItemProperty().addListener(

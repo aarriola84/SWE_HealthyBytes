@@ -1,5 +1,6 @@
 package login;
 
+import utilities.User;
 import database.Database;
 import java.sql.ResultSet;
 import java.sql.Statement;

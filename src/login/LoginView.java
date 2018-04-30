@@ -26,7 +26,6 @@ public class LoginView extends BorderPane
     public LoginView()
     {
         this.setBackground(background);
-        //this.setStyle("-fx-background-color: #a9b1bc;");
         this.setCenter(loginForm);
     }
     

@@ -1,4 +1,4 @@
-package login;
+package utilities;
 
 /**
  * @author Ruben Olivares

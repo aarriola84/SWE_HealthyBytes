@@ -1,5 +1,6 @@
 package login;
 
+import utilities.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

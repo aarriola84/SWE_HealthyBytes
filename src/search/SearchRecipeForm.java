@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package mainmenu;
+package search;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -27,39 +22,6 @@ import javafx.scene.text.FontWeight;
  */
 public class SearchRecipeForm extends GridPane
 {
-
-    /**
-     * @return the recipes
-     */
-    public String[] getRecipes()
-    {
-        return recipes;
-    }
-
-    /**
-     * @param recipes the recipes to set
-     */
-    public void setRecipes(String[] recipes)
-    {
-        this.setRecipes(recipes);
-    }
-
-    /**
-     * @return the listView
-     */
-    public ListView<String> getListView()
-    {
-        return listView;
-    }
-
-    /**
-     * @param listView the listView to set
-     */
-    public void setListView(ListView<String> listView)
-    {
-        this.listView = listView;
-    }
-
     //flowpane
     private FlowPane listPane = new FlowPane(10,10);
     
@@ -102,10 +64,8 @@ public class SearchRecipeForm extends GridPane
     //listview variable and fill in food items for now
     private String[] recipes = {"Pizza", "Spaghetti", "Salad", "Chicken Salad", "Beef Salad"};
     private ListView<String> listView = new ListView<>(FXCollections.observableArrayList(recipes));
-    
-    
-    
 
+    //constructor
     public SearchRecipeForm()
     {
         listView.setPrefSize(400, 400);
@@ -152,7 +112,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the title
      */
-    public Label getTitle()
+    public Label GetTitle()
     {
         return title;
     }
@@ -160,7 +120,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param title the title to set
      */
-    public void setTitle(Label title)
+    public void SetTitle(Label title)
     {
         this.title = title;
     }
@@ -168,7 +128,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the searchBtn
      */
-    public Button getSearchBtn()
+    public Button GetSearchBtn()
     {
         return searchBtn;
     }
@@ -176,7 +136,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param searchBtn the searchBtn to set
      */
-    public void setSearchBtn(Button searchBtn)
+    public void SetSearchBtn(Button searchBtn)
     {
         this.searchBtn = searchBtn;
     }
@@ -184,7 +144,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cancelBtn
      */
-    public Button getCancelBtn()
+    public Button GetCancelBtn()
     {
         return cancelBtn;
     }
@@ -192,7 +152,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cancelBtn the cancelBtn to set
      */
-    public void setCancelBtn(Button cancelBtn)
+    public void SetCancelBtn(Button cancelBtn)
     {
         this.cancelBtn = cancelBtn;
     }
@@ -200,7 +160,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbChicken
      */
-    public CheckBox getCbChicken()
+    public CheckBox GetCbChicken()
     {
         return cbChicken;
     }
@@ -208,7 +168,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbChicken the cbChicken to set
      */
-    public void setCbChicken(CheckBox cbChicken)
+    public void SetCbChicken(CheckBox cbChicken)
     {
         this.cbChicken = cbChicken;
     }
@@ -216,7 +176,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbBeef
      */
-    public CheckBox getCbBeef()
+    public CheckBox GetCbBeef()
     {
         return cbBeef;
     }
@@ -224,7 +184,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbBeef the cbBeef to set
      */
-    public void setCbBeef(CheckBox cbBeef)
+    public void SetCbBeef(CheckBox cbBeef)
     {
         this.cbBeef = cbBeef;
     }
@@ -232,7 +192,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbFish
      */
-    public CheckBox getCbFish()
+    public CheckBox GetCbFish()
     {
         return cbFish;
     }
@@ -240,7 +200,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbFish the cbFish to set
      */
-    public void setCbFish(CheckBox cbFish)
+    public void SetCbFish(CheckBox cbFish)
     {
         this.cbFish = cbFish;
     }
@@ -248,7 +208,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbLamb
      */
-    public CheckBox getCbLamb()
+    public CheckBox GetCbLamb()
     {
         return cbLamb;
     }
@@ -256,7 +216,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbLamb the cbLamb to set
      */
-    public void setCbLamb(CheckBox cbLamb)
+    public void SetCbLamb(CheckBox cbLamb)
     {
         this.cbLamb = cbLamb;
     }
@@ -264,7 +224,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbPork
      */
-    public CheckBox getCbPork()
+    public CheckBox GetCbPork()
     {
         return cbPork;
     }
@@ -272,7 +232,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbPork the cbPork to set
      */
-    public void setCbPork(CheckBox cbPork)
+    public void SetCbPork(CheckBox cbPork)
     {
         this.cbPork = cbPork;
     }
@@ -280,7 +240,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbVege
      */
-    public CheckBox getCbVege()
+    public CheckBox GetCbVege()
     {
         return cbVege;
     }
@@ -288,7 +248,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbVege the cbVege to set
      */
-    public void setCbVege(CheckBox cbVege)
+    public void SetCbVege(CheckBox cbVege)
     {
         this.cbVege = cbVege;
     }
@@ -296,7 +256,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the cbVegan
      */
-    public CheckBox getCbVegan()
+    public CheckBox GetCbVegan()
     {
         return cbVegan;
     }
@@ -304,7 +264,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param cbVegan the cbVegan to set
      */
-    public void setCbVegan(CheckBox cbVegan)
+    public void SetCbVegan(CheckBox cbVegan)
     {
         this.cbVegan = cbVegan;
     }
@@ -312,7 +272,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolChicken
      */
-    public Boolean getBoolChicken()
+    public Boolean GetBoolChicken()
     {
         return boolChicken;
     }
@@ -320,7 +280,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolChicken the boolChicken to set
      */
-    public void setBoolChicken(Boolean boolChicken)
+    public void SetBoolChicken(Boolean boolChicken)
     {
         this.boolChicken = boolChicken;
     }
@@ -328,7 +288,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolBeef
      */
-    public Boolean getBoolBeef()
+    public Boolean GetBoolBeef()
     {
         return boolBeef;
     }
@@ -336,7 +296,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolBeef the boolBeef to set
      */
-    public void setBoolBeef(Boolean boolBeef)
+    public void SetBoolBeef(Boolean boolBeef)
     {
         this.boolBeef = boolBeef;
     }
@@ -344,7 +304,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolFish
      */
-    public Boolean getBoolFish()
+    public Boolean GetBoolFish()
     {
         return boolFish;
     }
@@ -352,7 +312,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolFish the boolFish to set
      */
-    public void setBoolFish(Boolean boolFish)
+    public void SetBoolFish(Boolean boolFish)
     {
         this.boolFish = boolFish;
     }
@@ -360,7 +320,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolLamb
      */
-    public Boolean getBoolLamb()
+    public Boolean GetBoolLamb()
     {
         return boolLamb;
     }
@@ -368,7 +328,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolLamb the boolLamb to set
      */
-    public void setBoolLamb(Boolean boolLamb)
+    public void SetBoolLamb(Boolean boolLamb)
     {
         this.boolLamb = boolLamb;
     }
@@ -376,7 +336,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolPork
      */
-    public Boolean getBoolPork()
+    public Boolean GetBoolPork()
     {
         return boolPork;
     }
@@ -384,7 +344,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolPork the boolPork to set
      */
-    public void setBoolPork(Boolean boolPork)
+    public void SetBoolPork(Boolean boolPork)
     {
         this.boolPork = boolPork;
     }
@@ -392,7 +352,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolVege
      */
-    public Boolean getBoolVege()
+    public Boolean GetBoolVege()
     {
         return boolVege;
     }
@@ -400,7 +360,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolVege the boolVege to set
      */
-    public void setBoolVege(Boolean boolVege)
+    public void SetBoolVege(Boolean boolVege)
     {
         this.boolVege = boolVege;
     }
@@ -408,7 +368,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the boolVegan
      */
-    public Boolean getBoolVegan()
+    public Boolean GetBoolVegan()
     {
         return boolVegan;
     }
@@ -416,7 +376,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param boolVegan the boolVegan to set
      */
-    public void setBoolVegan(Boolean boolVegan)
+    public void SetBoolVegan(Boolean boolVegan)
     {
         this.boolVegan = boolVegan;
     }
@@ -425,7 +385,7 @@ public class SearchRecipeForm extends GridPane
     /**
      * @return the foodDescrip
      */
-    public Label[] getFoodDescrip()
+    public Label[] GetFoodDescrip()
     {
         return foodDescrip;
     }
@@ -433,9 +393,39 @@ public class SearchRecipeForm extends GridPane
     /**
      * @param foodDescrip the foodDescrip to set
      */
-    public void setFoodDescrip(Label[] foodDescrip)
+    public void SetFoodDescrip(Label[] foodDescrip)
     {
         this.foodDescrip = foodDescrip;
     }
+    /**
+     * @return the recipes
+     */
+    public String[] GetRecipes()
+    {
+        return recipes;
+    }
 
+    /**
+     * @param recipes the recipes to set
+     */
+    public void SetRecipes(String[] recipes)
+    {
+        this.SetRecipes(recipes);
+    }
+
+    /**
+     * @return the listView
+     */
+    public ListView<String> GetListView()
+    {
+        return listView;
+    }
+
+    /**
+     * @param listView the listView to set
+     */
+    public void SetListView(ListView<String> listView)
+    {
+        this.listView = listView;
+    }
 }

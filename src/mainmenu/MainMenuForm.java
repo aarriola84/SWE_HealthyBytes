@@ -16,9 +16,6 @@ import javafx.scene.text.FontWeight;
  */
 public class MainMenuForm extends GridPane
 {
-
-    
-    
     // Main menu labels and others
     private Label title = new Label("Healthy Bytes");
 
@@ -28,11 +25,9 @@ public class MainMenuForm extends GridPane
     private Button myRecipesBtn = new Button("My Recipes");
     private Button logoutBtn = new Button("Logout");
 
-    //main menu images
+    //cosntructor
     public MainMenuForm()
     {
-        
-        
         //format title label 
         title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 20));
 
@@ -43,38 +38,12 @@ public class MainMenuForm extends GridPane
         //vbox variables
         VBox vbox1 = new VBox(50);
 
+        //set sizes of buttons
         searchBtn.setPrefSize(400, 50);
         myRecipesBtn.setPrefSize(400, 50);
         logoutBtn.setPrefSize(400, 50);
-/*
-        searchBtn.setStyle("-fx-background-color:\n"
-                + "        linear-gradient(#f0ff35, #a9ff00),\n"
-                + "        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n"
-                + "    -fx-background-radius: 30;\n"
-                + "    -fx-background-insets: 0,1,2,3,0;\n"
-                + "    -fx-text-fill: #654b00;\n"
-                + "    -fx-font-weight: bold;\n"
-                + "    -fx-font-size: 20px;\n"
-                + "    -fx-padding: 10 20 10 20;");
-        myRecipesBtn.setStyle("-fx-background-color:\n"
-                + "        linear-gradient(#f0ff35, #a9ff00),\n"
-                + "        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n"
-                + "    -fx-background-radius: 30;\n"
-                + "    -fx-background-insets: 0,1,2,3,0;\n"
-                + "    -fx-text-fill: #654b00;\n"
-                + "    -fx-font-weight: bold;\n"
-                + "    -fx-font-size: 20px;\n"
-                + "    -fx-padding: 10 20 10 20;");
-        logoutBtn.setStyle("-fx-background-color:\n"
-                + "        linear-gradient(#f0ff35, #a9ff00),\n"
-                + "        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n"
-                + "    -fx-background-radius: 30;\n"
-                + "    -fx-background-insets: 0,1,2,3,0;\n"
-                + "    -fx-text-fill: #654b00;\n"
-                + "    -fx-font-weight: bold;\n"
-                + "    -fx-font-size: 20px;\n"
-                + "    -fx-padding: 10 20 10 20;");
-*/
+
+        //add everything
         this.getChildren().clear();
         vbox1.getChildren().addAll(searchBtn, myRecipesBtn, logoutBtn);
 
@@ -82,7 +51,54 @@ public class MainMenuForm extends GridPane
         this.add(vbox1, 1, 0);
 
         this.setAlignment(Pos.CENTER);
-
     }
 
+    //properties
+    /**
+     * @return the searchBtn
+     */
+    public Button GetSearchBtn()
+    {
+        return searchBtn;
+    }
+
+    /**
+     * @param searchBtn the searchBtn to set
+     */
+    public void SetSearchBtn(Button searchBtn)
+    {
+        this.searchBtn = searchBtn;
+    }
+
+    /**
+     * @return the myRecipesBtn
+     */
+    public Button GetMyRecipesBtn()
+    {
+        return myRecipesBtn;
+    }
+
+    /**
+     * @param myRecipesBtn the myRecipesBtn to set
+     */
+    public void SetMyRecipesBtn(Button myRecipesBtn)
+    {
+        this.myRecipesBtn = myRecipesBtn;
+    }
+
+    /**
+     * @return the logoutBtn
+     */
+    public Button GetLogoutBtn()
+    {
+        return logoutBtn;
+    }
+
+    /**
+     * @param logoutBtn the logoutBtn to set
+     */
+    public void SetLogoutBtn(Button logoutBtn)
+    {
+        this.logoutBtn = logoutBtn;
+    }
 }
