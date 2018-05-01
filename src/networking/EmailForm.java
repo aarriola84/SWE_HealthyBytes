@@ -32,7 +32,7 @@ public class EmailForm extends GridPane
     private String message = "Let the sharing begin...";
 
     // attachments
-    private String[] attachFiles = new String[3]; // Needs 2 text files and 1 image of selected recipe
+    private String[] attachFiles; // Needs 2 text files and 1 image of selected recipe
     
     private Label titleemailLabel = new Label ("Email Form Submission");		
     private Label toAddressLabel = new Label("Target Email Address: ");
@@ -41,8 +41,10 @@ public class EmailForm extends GridPane
     private TextField subjectTF = new TextField();
     private Label messageLabel = new Label("Message: ");
     private TextArea messageTA = new TextArea("Enter Message Here...");
-    private Button submitBtn = new Button("Send Email");
-    private Button backBtn = new Button("Back To My Recipes");
+    TextArea messageTF = new TextArea("Enter Message Here...");
+    private Button action1 = new Button("Choose a file...");
+    private Button action2 = new Button("Choose files...");
+    private Button action3 = new Button("Send Email");
     
     VBox labelandtextHolder = new VBox(10);
     HBox buttonHolder = new HBox(5);
@@ -286,43 +288,60 @@ public class EmailForm extends GridPane
     {
         this.messageTA = messageTA;
     }
-
+    
+    
     /**
-     * @return the submitBtn
+     * @return the action1
      */
-    public Button GetSubmitBtn()
+    public Button GetAction1()
     {
-        return submitBtn;
+        return action1;
     }
 
     /**
-     * @param submitBtn the submitBtn to set
+     * @param button the action1 to set
      */
-    public void SetSubmitBtn(Button submitBtn)
+    public void SetAction1(Button button)
     {
-        this.submitBtn = submitBtn;
+        this.action1 = button;
     }
 
     /**
-     * @return the backBtn
+     * @return the action2
      */
-    public Button GetBackBtn()
+    public Button GetAction2()
     {
-        return backBtn;
+        return action2;
     }
 
     /**
-     * @param backBtn the backBtn to set
+     * @param button the action2 to set
      */
-    public void SetBackBtn(Button backBtn)
+    public void SetAction2(Button button)
     {
-        this.backBtn = backBtn;
+        this.action2 = button;
+    }
+
+    /**
+     * @return the action3
+     */
+    public Button GetAction3()
+    {
+        return action3;
+    }
+
+    /**
+     * @param button the action3 to set
+     */
+    public void SetAction3(Button button)
+    {
+        this.action3 = button;
     }
     
       public EmailForm()
     {
         labelandtextHolder.getChildren().addAll(titleemailLabel,toAddressLabel,toAddressTF,subjectLabel,subjectTF,messageLabel,messageTA);
-        buttonHolder.getChildren().addAll(submitBtn,backBtn);
+        buttonHolder.getChildren().addAll(action1,action2,action3);
         this.add(labelandtextHolder, 0, 0);
         this.add(buttonHolder,0,1);
         this.setAlignment(Pos.CENTER);
@@ -334,4 +353,5 @@ public class EmailForm extends GridPane
          subjectTF.clear();
          messageTA.clear();
      }
+
 }
