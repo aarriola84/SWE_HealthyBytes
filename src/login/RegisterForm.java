@@ -49,7 +49,15 @@ public class RegisterForm extends GridPane
      */
     public RegisterForm()
     {
-        titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 40));
+        //change fonts of labels
+        titleLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.ITALIC, 40));
+        errorLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        fNameLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        lNameLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        usernameLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        passwordLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        dobLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        
         labelTFVBox.getChildren().addAll(fNameLabel,fNameTF, lNameLabel, lNameTF,
                                          usernameLabel,usernameTF,passwordLabel,passwordTF, dobLabel, dobTF);
         buttonHBox.getChildren().addAll(registerBtn,cancelBtn);

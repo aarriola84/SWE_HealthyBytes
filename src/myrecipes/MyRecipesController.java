@@ -34,7 +34,7 @@ public class MyRecipesController
     public void attachHandlers()
     {
         //main menu form buttons
-        myRecipesView.GetMyRecipesForm().GetMainMenuBtn().setOnAction(
+        myRecipesView.GetRecipeListForm().GetAction4().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)

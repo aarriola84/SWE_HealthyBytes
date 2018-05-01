@@ -1,5 +1,6 @@
 package utilities;
 
+import java.sql.Blob;
 import javafx.scene.image.Image;
 
 /**
@@ -14,16 +15,16 @@ public class Recipe
     private int faveCount;
     private int difficulty;
     private String name;
-    private String info;
-    private String description;
-    private Image img;
+    private Blob info;
+    private Blob description;
+    private Blob img;
 
     //constructors
     //default constructor
     public Recipe(){}
     
     //param constructor
-    public Recipe(int recipeID, int proteinID, int ownerID, int faveCount, int difficulty, String name, Image img, String info, String desc)
+    public Recipe(int recipeID, int proteinID, int ownerID, int faveCount, int difficulty, String name, Blob img, Blob info, Blob desc)
     {
         this.recipeID = recipeID;
         this.proteinID = proteinID;
@@ -136,7 +137,7 @@ public class Recipe
     /**
      * @return the info
      */
-    public String GetInfo()
+    public Blob GetInfo()
     {
         return info;
     }
@@ -144,7 +145,7 @@ public class Recipe
     /**
      * @param info the info to set
      */
-    public void SetInfo(String info)
+    public void SetInfo(Blob info)
     {
         this.info = info;
     }
@@ -152,7 +153,7 @@ public class Recipe
     /**
      * @return the description
      */
-    public String GetDescription()
+    public Blob GetDescription()
     {
         return description;
     }
@@ -160,7 +161,7 @@ public class Recipe
     /**
      * @param description the description to set
      */
-    public void SetDescription(String description)
+    public void SetDescription(Blob description)
     {
         this.description = description;
     }
@@ -168,7 +169,7 @@ public class Recipe
     /**
      * @return the img
      */
-    public Image GetImg()
+    public Blob GetImg()
     {
         return img;
     }
@@ -176,7 +177,7 @@ public class Recipe
     /**
      * @param img the img to set
      */
-    public void SetImg(Image img)
+    public void SetImg(Blob img)
     {
         this.img = img;
     }
