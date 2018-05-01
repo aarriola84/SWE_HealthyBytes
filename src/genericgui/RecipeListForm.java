@@ -1,5 +1,6 @@
-package myrecipes;
+package genericgui;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -7,19 +8,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import utilities.Recipe;
 
 /**
- *
  * @author Matthew Rodriguez
  * Date: April 26, 2018
  */
-public class MyRecipesForm extends GridPane
+public class RecipeListForm extends GridPane
 {
     private String[] foodTitles = 
     {
@@ -38,18 +39,47 @@ public class MyRecipesForm extends GridPane
        new Label("This is a recipe about tortellini."),
        new Label("This is a recipe about lasagna."),
     };
-    
-    private ListView<String> listView = new ListView<>(FXCollections.observableArrayList(foodTitles)); // ArrayList to hold things
-    private FlowPane listPane = new FlowPane (10,10);
+    // ArrayList to hold things
+    private ListView<String> listView = new ListView<>(FXCollections.observableArrayList(foodTitles)); 
+    private TextArea listPane = new TextArea();
 
-    private Label titleLabel = new Label("My Recipes");
-    private Button viewrecipeBtn = new Button("View Recipe");
-    private Button createrecipeBtn = new Button("Create Recipe");
-    private Button shareBtn = new Button ("Share Button");
-    private Button mainMenuBtn = new Button("Back To Main Menu");
+    private Button action1 = new Button("View Recipe");
+    private Button action2 = new Button("Create Recipe");
+    private Button action3 = new Button ("Share Button");
+    private Button action4 = new Button("Back To Main Menu");
     
     HBox imagehbox = new HBox(10);
     HBox buttonbox = new HBox(30);
+    
+    private FilterBox filterBox = new FilterBox();
+    
+    //constructor
+    public RecipeListForm()
+    {
+        listView.setPrefSize(350,400);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        this.setAlignment(Pos.CENTER);
+        listPane.setStyle("-fx-background-color: white");
+        listPane.setOpacity(.80);
+        listPane.setEditable(false);
+        listPane.setWrapText(true);
+        imagehbox.getChildren().addAll(filterBox,new ScrollPane(listView),listPane);
+        buttonbox.getChildren().addAll(action1,action2,action3,action4);
+        buttonbox.setAlignment(Pos.CENTER);
+        this.add(imagehbox,2,1);
+        this.add(buttonbox,2,2);       
+        listView.getSelectionModel().selectedItemProperty().addListener(
+        e -> {
+             listPane.clear();
+             for (Integer i : listView.getSelectionModel().getSelectedIndices())
+                {
+                    foodDescription2[i].setOpacity(1);
+                    foodDescription2[i].setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 14));
+                    listPane.appendText(foodDescription2[i].getText());
+                }
+             });
+    }
+    
     /**
      * @return the foodTitles
      */
@@ -101,7 +131,7 @@ public class MyRecipesForm extends GridPane
     /**
      * @return the listPane
      */
-    public FlowPane GetListPane()
+    public TextArea GetListPane()
     {
         return listPane;
     }
@@ -109,109 +139,102 @@ public class MyRecipesForm extends GridPane
     /**
      * @param listpane the listPane to set
      */
-    public void SetListPane(FlowPane listPane)
+    public void SetListPane(TextArea listPane)
     {
         this.listPane = listPane;
     }
 
     /**
-     * @return the titleLabel
-     */
-    public Label GetTitleLabel()
-    {
-        return titleLabel;
-    }
-
-    /**
-     * @param titleLabel the titleLabel to set
-     */
-    public void SetTitleLabel(Label titleLabel)
-    {
-        this.titleLabel = titleLabel;
-    }
-
-    /**
      * @return the viewrecipeBtn
      */
-    public Button GetViewRecipeBtn()
+    public Button GetAction1()
     {
-        return viewrecipeBtn;
+        return action1;
     }
 
     /**
      * @param viewrecipeBtn the viewrecipeBtn to set
      */
-    public void SetViewRecipeBtn(Button viewrecipeBtn)
+    public void SetAction1(Button button)
     {
-        this.viewrecipeBtn = viewrecipeBtn;
+        this.action1 = button;
     }
 
     /**
      * @return the createrecipeBtn
      */
-    public Button GetCreateRecipeBtn()
+    public Button GetAction2()
     {
-        return createrecipeBtn;
+        return action2;
     }
 
     /**
      * @param createrecipeBtn the createrecipeBtn to set
      */
-    public void SetCreateRecipeBtn(Button createrecipeBtn)
+    public void SetAction2(Button button)
     {
-        this.createrecipeBtn = createrecipeBtn;
+        this.action2 = button;
     }
 
     /**
      * @return the shareBtn
      */
-    public Button GetShareBtn()
+    public Button GetAction3()
     {
-        return shareBtn;
+        return action3;
     }
 
     /**
      * @param shareBtn the shareBtn to set
      */
-    public void SetShareBtn(Button shareBtn)
+    public void SetAction3(Button button)
     {
-        this.shareBtn = shareBtn;
+        this.action3 = button;
     }
     
     /**
      * @return the mainMenuBtn
      */
-    public Button GetMainMenuBtn()
+    public Button GetAction4()
     {
-        return mainMenuBtn;
+        return action4;
     }
 
     /**
      * @param mainMenuBtn the mainMenuBtn to set
      */
-    public void SetMainMenuBtn(Button mainMenuBtn)
+    public void SetAction4(Button button)
     {
-        this.mainMenuBtn = mainMenuBtn;
+        this.action4 = button;
     }
     
-    public MyRecipesForm()
+    /**
+     * @return the filterBox
+     */
+    public FilterBox GetFilterBox()
     {
-        listView.setPrefSize(400,400);
-        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        this.setAlignment(Pos.CENTER);
-        titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 50));
-        this.add(titleLabel,2,0);
-        imagehbox.getChildren().addAll(new ScrollPane(listView),listPane);
-        buttonbox.getChildren().addAll(viewrecipeBtn,createrecipeBtn,shareBtn,mainMenuBtn);
-        this.add(imagehbox,2,1);
-        this.add(buttonbox,2,2);       
-        listView.getSelectionModel().selectedItemProperty().addListener(
-        e -> {
-             listPane.getChildren().clear();
-             for (Integer i : listView.getSelectionModel().getSelectedIndices())
-                {
-                    listPane.getChildren().add(foodDescription2[i]);
-                }
-             });
+        return filterBox;
+    }
+
+    /**
+     * @param filterBox the filterBox to set
+     */
+    public void SetFilterBox(FilterBox filterBox)
+    {
+        this.filterBox = filterBox;
+    }
+    
+    //functions
+    public void SetNewTitles(ArrayList<Recipe> recipeList)
+    {
+        String[] titles = new String[recipeList.size()];
+        int i = 0;
+        for (Recipe recipe: recipeList)
+        {
+            titles[i] = recipe.GetName();
+            i++;
+        }
+        foodTitles = titles;
+        listView.setItems(FXCollections.observableArrayList(foodTitles));
     }
 }

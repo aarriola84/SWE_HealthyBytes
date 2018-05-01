@@ -34,7 +34,19 @@ public class SearchController
     public void attachHandlers()
     {
         //main menu form buttons
-        searchView.GetSearchRecipeForm().GetCancelBtn().setOnAction(
+        //search
+        searchView.GetRecipeListForm().GetAction1().setOnAction(
+                new EventHandler<ActionEvent>()
+                {
+                     public void handle(ActionEvent event)
+                     {
+                         int[] proteinList = searchView.GetProteinIds();
+                         searchModel.GetRecipesDB(proteinList);
+                         searchView.GetRecipeListForm().SetNewTitles(searchModel.GetRecipes());
+                     }
+                });
+        //return to main menu
+        searchView.GetRecipeListForm().GetAction4().setOnAction(
                 new EventHandler<ActionEvent>()
                 {
                      public void handle(ActionEvent event)

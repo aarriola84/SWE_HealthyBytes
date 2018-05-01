@@ -47,8 +47,8 @@ public class LoginForm extends GridPane
         loginIV.setFitWidth(400);
         
         //change label
-        emailLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 16));
-        passLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        emailLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        passLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
         
         //add to button box
         buttonBox.getChildren().addAll(loginButton, registerButton);

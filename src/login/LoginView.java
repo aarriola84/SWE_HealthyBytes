@@ -1,5 +1,6 @@
 package login;
 
+import genericgui.Banner;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -26,7 +27,7 @@ public class LoginView extends BorderPane
     public LoginView()
     {
         this.setBackground(background);
-        this.setCenter(loginForm);
+        this.setCenter(loginForm); 
     }
     
     //properties
