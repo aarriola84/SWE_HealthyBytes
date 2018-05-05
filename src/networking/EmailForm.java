@@ -19,21 +19,7 @@ import javafx.scene.layout.VBox;
  * @author Matthew Rodriguez
  */
 public class EmailForm extends GridPane
-{
-    //main email set-up
-    private String host = "smtp.gmail.com";
-    private String port = "465";
-    private String mailFrom = "softwareengineeringutrgv@gmail.com";
-    private String password = "utrgvcssw";
-
-    // message info
-    private String toAddress = "mahmoud.quweider@gmail.com";
-    private String subject = "New email with attachments && CC";
-    private String message = "Let the sharing begin...";
-
-    // attachments
-    private String[] attachFiles; // Needs 2 text files and 1 image of selected recipe
-    
+{  
     private Label titleemailLabel = new Label ("Email Form Submission");		
     private Label toAddressLabel = new Label("Target Email Address: ");
     private TextField toAddressTF = new TextField();
@@ -41,141 +27,13 @@ public class EmailForm extends GridPane
     private TextField subjectTF = new TextField();
     private Label messageLabel = new Label("Message: ");
     private TextArea messageTA = new TextArea("Enter Message Here...");
-    TextArea messageTF = new TextArea("Enter Message Here...");
     private Button action1 = new Button("Choose a file...");
     private Button action2 = new Button("Choose files...");
     private Button action3 = new Button("Send Email");
+    private Button action4 = new Button("Return to My Recipes");
     
     VBox labelandtextHolder = new VBox(10);
     HBox buttonHolder = new HBox(5);
-
-    /**
-     * @return the host
-     */
-    public String GetHost()
-    {
-        return host;
-    }
-
-    /**
-     * @param host the host to set
-     */
-    public void SetHost(String host)
-    {
-        this.host = host;
-    }
-
-    /**
-     * @return the port
-     */
-    public String SetPort()
-    {
-        return port;
-    }
-
-    /**
-     * @param port the port to set
-     */
-    public void SetPort(String port)
-    {
-        this.port = port;
-    }
-
-    /**
-     * @return the mailFrom
-     */
-    public String GetMailFrom()
-    {
-        return mailFrom;
-    }
-
-    /**
-     * @param mailFrom the mailFrom to set
-     */
-    public void SetMailFrom(String mailFrom)
-    {
-        this.mailFrom = mailFrom;
-    }
-
-    /**
-     * @return the password
-     */
-    public String GetPassword()
-    {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void SetPassword(String password)
-    {
-        this.password = password;
-    }
-
-    /**
-     * @return the toAddress
-     */
-    public String GetToAddress()
-    {
-        return toAddress;
-    }
-
-    /**
-     * @param toAddress the toAddress to set
-     */
-    public void SetToAddress(String toAddress)
-    {
-        this.toAddress = toAddress;
-    }
-
-    /**
-     * @return the subject
-     */
-    public String GetSubject()
-    {
-        return subject;
-    }
-
-    /**
-     * @param subject the subject to set
-     */
-    public void SetSubject(String subject)
-    {
-        this.subject = subject;
-    }
-
-    /**
-     * @return the message
-     */
-    public String GetMessage()
-    {
-        return message;
-    }
-
-    /**
-     * @param message the message to set
-     */
-    public void SetMessage(String message)
-    {
-        this.message = message;
-    }
-
-    /**
-     * @return the attachFiles
-     */
-    public String[] GetAttachFiles()
-    {
-        return attachFiles;
-    }
-
-    /**
-     * @param attachFiles the attachFiles to set
-     */
-    public void SetAttachFiles(String[] attachFiles)
-    {
-        this.attachFiles = attachFiles;
-    }
 
     /**
      * @return the titleemailLabel
@@ -289,7 +147,6 @@ public class EmailForm extends GridPane
         this.messageTA = messageTA;
     }
     
-    
     /**
      * @return the action1
      */
@@ -338,10 +195,26 @@ public class EmailForm extends GridPane
         this.action3 = button;
     }
     
+    /**
+     * @return the action4
+     */
+    public Button GetAction4()
+    {
+        return action4;
+    }
+
+    /**
+     * @param action4 the action4 to set
+     */
+    public void SetAction4(Button action4)
+    {
+        this.action4 = action4;
+    }
+    
       public EmailForm()
     {
         labelandtextHolder.getChildren().addAll(titleemailLabel,toAddressLabel,toAddressTF,subjectLabel,subjectTF,messageLabel,messageTA);
-        buttonHolder.getChildren().addAll(action1,action2,action3);
+        buttonHolder.getChildren().addAll(action1,action2,action3,action4);
         this.add(labelandtextHolder, 0, 0);
         this.add(buttonHolder,0,1);
         this.setAlignment(Pos.CENTER);
@@ -353,5 +226,4 @@ public class EmailForm extends GridPane
          subjectTF.clear();
          messageTA.clear();
      }
-
 }
