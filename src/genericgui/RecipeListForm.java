@@ -40,7 +40,7 @@ public class RecipeListForm extends GridPane
        new Label("This is a recipe about lasagna."),
     };
     // ArrayList to hold things
-    private ListView<String> listView = new ListView<>(FXCollections.observableArrayList(foodTitles)); 
+    private ListView<String> listView = new ListView<>(); 
     private TextArea listPane = new TextArea();
 
     private Button action1 = new Button("View Recipe");
@@ -236,5 +236,17 @@ public class RecipeListForm extends GridPane
         }
         foodTitles = titles;
         listView.setItems(FXCollections.observableArrayList(foodTitles));
+    }
+    
+    public void SetNewDescriptions(ArrayList<Recipe> recipeList)
+    {
+        Label[] desc = new Label[recipeList.size()];
+        int i = 0;
+        for (Recipe recipe: recipeList)
+        {
+            desc[i] = new Label(recipe.GetDescription());
+            i++;
+        }
+        foodDescription2 = desc;
     }
 }

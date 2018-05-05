@@ -121,6 +121,10 @@ public class SearchView extends BorderPane
             other = true;
             count++;
         }
+        
+        if (count == 0)
+            return null;
+        
         int[] proteinList = new int[count];
         
         //set the array according

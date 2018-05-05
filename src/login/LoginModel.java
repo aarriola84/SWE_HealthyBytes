@@ -4,6 +4,7 @@ import utilities.User;
 import database.Database;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import utilities.ActiveUser;
 
 /**
  * @author Alexis Arriola
@@ -13,6 +14,7 @@ public class LoginModel
     //data
     private Database hbDatabase = Database.GetSingletonOfdatabase();
     private User currentUser;
+    private ActiveUser activeUser;
     
     /**
      * @return the currentUser
@@ -47,7 +49,7 @@ public class LoginModel
         }
         catch(Exception e)
         {
-            
+            System.out.println("Exception at LoginModel, Function RegisterUser: " + e);
         }
     }
     
@@ -57,25 +59,31 @@ public class LoginModel
         try
         {
             Statement stmnt = hbDatabase.GetStmnt();
-            ResultSet result = stmnt.executeQuery("select email, password from users where email = '"+email+"' and password = '"+pass+"';");
+            ResultSet result = stmnt.executeQuery("select * from users where email = '"+email+"' and password = '"+pass+"';");
             
             if (result.next() == false)
             {
-                //String em = result.getString("email");
-                //String ps = result.getString("password");
-                //System.out.println("em + ps: " + em + " " + ps);
                 System.out.println("User not verified");
                 verified = false;
             }
             else
             {
                 System.out.println("User Verified");
+                int id = result.getInt("user_id");
+                String fName = result.getString("fName");
+                String lName = result.getString("lName");
+                String em = result.getString("email");
+                String pas = result.getString("password");
+                String dob = result.getString("dob");
+                User tempUser = new User(id, fName, lName, em, pas, dob);
+                activeUser = ActiveUser.GetSingletonUser();
+                activeUser.SetActiveUser(tempUser);
                 verified = true;
             }
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            System.out.println("Exception at LoginModel, Function VerifyUser: " + e);
         }
         
         return verified;

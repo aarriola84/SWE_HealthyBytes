@@ -5,6 +5,8 @@ import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import utilities.ActiveUser;
+import utilities.HBIO;
 import utilities.Recipe;
 
 /**
@@ -16,6 +18,7 @@ public class SearchModel
     private Database hbDatabase = Database.GetSingletonOfdatabase();
     private ArrayList<Recipe> recipes = new ArrayList<>();
     private Recipe currentRecipe;
+    private ActiveUser activeUser;
     
     //properties
     /**
@@ -51,6 +54,7 @@ public class SearchModel
     }
     
     //functions
+    //Gets all recipes from DB based on proteins selected.
     public void GetRecipesDB(int[] proteinList)
     {
         String ands = GetAnds(proteinList);
@@ -60,9 +64,12 @@ public class SearchModel
         int favCount;
         int difficulty;
         String name;
-        Blob info;
-        Blob desc;
-        Blob img;
+        String info;
+        String path;
+        String desc;
+        Blob infoBlob;
+        Blob descBlob;
+        Blob imgBlob;
         
         recipes.clear();
         try
@@ -85,11 +92,14 @@ public class SearchModel
                 favCount = result.getInt("fave_count");
                 difficulty = result.getInt("difficulty");
                 name = result.getString("name");
-                info = result.getBlob("step_info");
-                desc = result.getBlob("rec_info");
-                img = result.getBlob("rec_img");
+                infoBlob = result.getBlob("step_info");
+                descBlob = result.getBlob("rec_info");
+                imgBlob = result.getBlob("rec_img");
+                info = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, infoBlob, 2));
+                desc = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, descBlob, 3));
+                path = HBIO.ConvertBlobToFile(name, imgBlob, 1);
                 //create the new recipe
-                Recipe newRecipe = new Recipe(recipeId, proteinId, ownerId, favCount, difficulty, name, img, info, desc);
+                Recipe newRecipe = new Recipe(recipeId, proteinId, ownerId, favCount, difficulty, name, path, info, desc);
                 //add recipe to the recipe array
                 recipes.add(newRecipe);
                 
@@ -105,11 +115,14 @@ public class SearchModel
                     favCount = result.getInt("fave_count");
                     difficulty = result.getInt("difficulty");
                     name = result.getString("name");
-                    info = result.getBlob("step_info");
-                    desc = result.getBlob("rec_info");
-                    img = result.getBlob("rec_img");
+                    infoBlob = result.getBlob("step_info");
+                    descBlob = result.getBlob("rec_info");
+                    imgBlob = result.getBlob("rec_img");
+                    info = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, infoBlob, 2));
+                    desc = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, descBlob, 3));
+                    path = HBIO.ConvertBlobToFile(name, imgBlob, 1);
                     //create the new recipe
-                    Recipe diffRecipe = new Recipe(recipeId, proteinId, ownerId, favCount, difficulty, name, img, info, desc);
+                    Recipe diffRecipe = new Recipe(recipeId, proteinId, ownerId, favCount, difficulty, name, path, info, desc);
                     //add recipe to the recipe array
                     recipes.add(diffRecipe);
                     
@@ -120,7 +133,7 @@ public class SearchModel
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            System.out.println("Exception at SearchModel, Function GetRecipeDB: " + e);
         }
     }
     
@@ -148,7 +161,7 @@ public class SearchModel
                 */
                 else
                 {
-                    ands += "and protein_id = " + proteinList[i] + " ";
+                    ands += "or protein_id = " + proteinList[i] + " ";
                 }
             }
         }
@@ -156,4 +169,39 @@ public class SearchModel
         return ands;
     }
     
+    /**
+     * Finds the recipe in the local array list and returns it given a to search by.
+     * @param name
+     * @return 
+     */
+    public Recipe FindRecipe(String name)
+    {
+        Recipe viewRecipe = null;
+        for (Recipe recipe: recipes)
+        {
+            if (recipe.GetName().equalsIgnoreCase(name))
+                viewRecipe = recipe;
+        }
+        return viewRecipe;
+    }
+    
+    public void FavoriteRecipe(Recipe currentRecipe)
+    {
+        activeUser = ActiveUser.GetSingletonUser();
+        try
+        {
+            //get the info we need for favorite table
+            int rec_id = currentRecipe.GetRecipeID();
+            int user_id = activeUser.GetId();
+            
+            //insert the favorite into the database
+            Statement stmnt = hbDatabase.GetStmnt();
+            String sql = "insert into faves (_recID, _userID) values (" + rec_id + "," + user_id + ");";
+            stmnt.executeUpdate(sql);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception at SearchModel, Function FavoriteRecipe: " + e);
+        }
+    }
 }

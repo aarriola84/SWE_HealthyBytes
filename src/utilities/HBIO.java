@@ -34,11 +34,12 @@ public class HBIO
         }
     }
 
-    public String OpenToReadFromTextFile(File file)
+    public static String OpenToReadFromTextFile(String path)
     {
         String data = "";
         try
         {
+            File file = new File(path);
             FileReader in = new FileReader(file);
             /* Input File to read from */
             BufferedReader inputline = new BufferedReader(in);
@@ -56,15 +57,14 @@ public class HBIO
         return data;
     }
 
-    public String ConvertBlobToFile(Recipe recipe, int type)
+    public static String ConvertBlobToFile(String name, Blob blob, int type)
     {
         String filepath = "";
         try
         {
             if (type == 1)
             {
-                filepath = "blobs/" + recipe.GetName() + ".jpg";
-                Blob blob = recipe.GetImg();
+                filepath = "src/tempfiles/" + name + ".jpg";
                 InputStream in = blob.getBinaryStream();
                 OutputStream outputStream = new FileOutputStream(filepath);
                 int bytesRead = -1;
@@ -76,11 +76,12 @@ public class HBIO
                 in.close();
                 outputStream.close();
                 System.out.println("File saved");
+                filepath = "tempfiles/" + name + ".jpg";
+                return filepath;
             }
             else if (type == 2)
             {
-                filepath = "blobs/" + recipe.GetName() + "Info.txt";
-                Blob blob = recipe.GetInfo();
+                filepath = "src/tempfiles/" + name + "Info.txt";
                 InputStream in = blob.getBinaryStream();
                 OutputStream outputStream = new FileOutputStream(filepath);
                 int bytesRead = -1;
@@ -92,11 +93,11 @@ public class HBIO
                 in.close();
                 outputStream.close();
                 System.out.println("File saved");
+                return filepath;
             }
             else
             {
-                filepath = "blobs/" + recipe.GetName() + "Desc.txt";
-                Blob blob = recipe.GetDescription();
+                filepath = "src/tempfiles/" + name + "Desc.txt";
                 InputStream in = blob.getBinaryStream();
                 OutputStream outputStream = new FileOutputStream(filepath);
                 int bytesRead = -1;
@@ -108,6 +109,7 @@ public class HBIO
                 in.close();
                 outputStream.close();
                 System.out.println("File saved");
+                return filepath;
             }
 
         } catch (SQLException ex)
@@ -120,12 +122,12 @@ public class HBIO
         {
             Logger.getLogger(HBIO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return filepath;
     }
 
     public void ConvertBlobToImage()
     {
-
+        
     }
 }

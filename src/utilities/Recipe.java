@@ -1,6 +1,6 @@
 package utilities;
 
-import java.sql.Blob;
+import java.io.File;
 import javafx.scene.image.Image;
 
 /**
@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
  */
 public class Recipe
 {
+
     //data
     private int recipeID;
     private int proteinID;
@@ -15,16 +16,19 @@ public class Recipe
     private int faveCount;
     private int difficulty;
     private String name;
-    private Blob info;
-    private Blob description;
-    private Blob img;
+    private String info;
+    private String description;
+    private String path;
+    private Image img;
 
     //constructors
     //default constructor
-    public Recipe(){}
-    
+    public Recipe()
+    {
+    }
+
     //param constructor
-    public Recipe(int recipeID, int proteinID, int ownerID, int faveCount, int difficulty, String name, Blob img, Blob info, Blob desc)
+    public Recipe(int recipeID, int proteinID, int ownerID, int faveCount, int difficulty, String name, String path, String info, String desc)
     {
         this.recipeID = recipeID;
         this.proteinID = proteinID;
@@ -32,9 +36,10 @@ public class Recipe
         this.faveCount = faveCount;
         this.difficulty = difficulty;
         this.name = name;
-        this.img = img;
+        this.path = path;
         this.info = info;
         this.description = desc;
+        System.out.println(path);
     }
 
     //properties
@@ -137,7 +142,7 @@ public class Recipe
     /**
      * @return the info
      */
-    public Blob GetInfo()
+    public String GetInfo()
     {
         return info;
     }
@@ -145,7 +150,7 @@ public class Recipe
     /**
      * @param info the info to set
      */
-    public void SetInfo(Blob info)
+    public void SetInfo(String info)
     {
         this.info = info;
     }
@@ -153,7 +158,7 @@ public class Recipe
     /**
      * @return the description
      */
-    public Blob GetDescription()
+    public String GetDescription()
     {
         return description;
     }
@@ -161,7 +166,7 @@ public class Recipe
     /**
      * @param description the description to set
      */
-    public void SetDescription(Blob description)
+    public void SetDescription(String description)
     {
         this.description = description;
     }
@@ -169,7 +174,7 @@ public class Recipe
     /**
      * @return the img
      */
-    public Blob GetImg()
+    public Image GetImg()
     {
         return img;
     }
@@ -177,8 +182,46 @@ public class Recipe
     /**
      * @param img the img to set
      */
-    public void SetImg(Blob img)
+    public void SetImg(Image img)
     {
         this.img = img;
+    }
+
+    /**
+     * @return the path
+     */
+    public String GetPath()
+    {
+        return path;
+    }
+
+    /**
+     * @param path the path to set
+     */
+    public void SetPath(String path)
+    {
+        this.path = path;
+    }
+
+    //functions
+    public void CreateImage()
+    {
+        try
+        {
+            File f = new File("src/" + path);
+            if (f.exists() && !f.isDirectory())
+            {
+                img = new Image(path);
+            } else
+            {
+                System.out.println(f.canRead());
+                System.out.println(f.exists());
+                System.out.println(f.isDirectory());
+                System.out.println(path + " File does not exist!");
+            }
+        } catch (Exception e)
+        {
+            System.out.println("Exception: " + e);
+        }
     }
 }
