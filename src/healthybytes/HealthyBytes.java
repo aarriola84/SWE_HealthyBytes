@@ -55,9 +55,9 @@ public class HealthyBytes extends Application
         
         //setup controllers
         lc = new LoginController(mainStage, loginView, loginModel, mainMenuScene);
-        mmc = new MainMenuController(mainStage, mainMenuView, loginScene, searchScene, myRecipesScene);
         sc = new SearchController(mainStage, searchView, searchModel, mainMenuScene);
         mrc = new MyRecipesController(mainStage, myRecipesView, myRecipesModel, mainMenuScene);
+        mmc = new MainMenuController(mainStage, mainMenuView, loginScene, searchScene, myRecipesScene, mrc);
         mc = new MainController(lc, mmc, sc, mrc);
         
         //show intial scene

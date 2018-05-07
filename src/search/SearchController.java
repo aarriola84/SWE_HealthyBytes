@@ -69,7 +69,8 @@ public class SearchController
                          String name = searchView.GetRecipeListForm().GetListView().getSelectionModel().getSelectedItem();
                          if (name != null)
                          {
-                             Recipe viewRecipe = searchModel.FindRecipe(name);
+                             int index = searchView.GetRecipeListForm().GetListView().getSelectionModel().getSelectedIndex();
+                             Recipe viewRecipe = searchModel.FindRecipe(index);
                              viewRecipe.CreateImage();
                              viewRecipeForm = new ViewRecipeForm(viewRecipe.GetImg(), viewRecipe.GetInfo());
                              Scene currentScene = new Scene(viewRecipeForm, 550, 700);

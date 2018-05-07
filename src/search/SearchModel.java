@@ -95,9 +95,9 @@ public class SearchModel
                 infoBlob = result.getBlob("step_info");
                 descBlob = result.getBlob("rec_info");
                 imgBlob = result.getBlob("rec_img");
-                info = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, infoBlob, 2));
-                desc = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, descBlob, 3));
-                path = HBIO.ConvertBlobToFile(name, imgBlob, 1);
+                info = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, ownerId, infoBlob, 2));
+                desc = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, ownerId, descBlob, 3));
+                path = HBIO.ConvertBlobToFile(name, ownerId, imgBlob, 1);
                 //create the new recipe
                 Recipe newRecipe = new Recipe(recipeId, proteinId, ownerId, favCount, difficulty, name, path, info, desc);
                 //add recipe to the recipe array
@@ -118,9 +118,9 @@ public class SearchModel
                     infoBlob = result.getBlob("step_info");
                     descBlob = result.getBlob("rec_info");
                     imgBlob = result.getBlob("rec_img");
-                    info = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, infoBlob, 2));
-                    desc = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, descBlob, 3));
-                    path = HBIO.ConvertBlobToFile(name, imgBlob, 1);
+                    info = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, ownerId, infoBlob, 2));
+                    desc = HBIO.OpenToReadFromTextFile(HBIO.ConvertBlobToFile(name, ownerId, descBlob, 3));
+                    path = HBIO.ConvertBlobToFile(name, ownerId, imgBlob, 1);
                     //create the new recipe
                     Recipe diffRecipe = new Recipe(recipeId, proteinId, ownerId, favCount, difficulty, name, path, info, desc);
                     //add recipe to the recipe array
@@ -184,24 +184,81 @@ public class SearchModel
         }
         return viewRecipe;
     }
+    public Recipe FindRecipe(int index)
+    {
+        Recipe viewRecipe = null;
+ 
+        viewRecipe = recipes.get(index);
+
+        return viewRecipe;
+    }
     
+    /**
+     * Favorites the recipe given using the current recipe.
+     * @param currentRecipe 
+     */
     public void FavoriteRecipe(Recipe currentRecipe)
     {
         activeUser = ActiveUser.GetSingletonUser();
         try
         {
             //get the info we need for favorite table
-            int rec_id = currentRecipe.GetRecipeID();
-            int user_id = activeUser.GetId();
+            int recId = currentRecipe.GetRecipeID();
+            int userId = activeUser.GetId();
             
             //insert the favorite into the database
-            Statement stmnt = hbDatabase.GetStmnt();
-            String sql = "insert into faves (_recID, _userID) values (" + rec_id + "," + user_id + ");";
-            stmnt.executeUpdate(sql);
+            if (VerifyFavorite(recId, userId))
+            {
+                //alert user telling them they already have this recipe favorited
+                System.out.println("Already Favorited!!!");
+            }
+            else
+            {
+                //add into the faves table
+                Statement stmnt = hbDatabase.GetStmnt();
+                String sql = "insert into faves (_recID, _userID) values (" + recId + "," + userId + ");";
+                stmnt.executeUpdate(sql);
+                //increment the recipe's favorite count
+                sql = "update recipes set fave_count = fave_count + 1 where recipe_id = " + recId + ";";
+                stmnt.executeUpdate(sql);
+            }
+            
         }
         catch(Exception e)
         {
             System.out.println("Exception at SearchModel, Function FavoriteRecipe: " + e);
         }
+    }
+    
+    /**
+     * Verifies if the recipe is already on the user's favorite list.
+     * @param recId
+     * @param userId
+     * @return 
+     */
+    private boolean VerifyFavorite(int recId, int userId)
+    {
+        boolean exists = false;
+        try
+        {
+            Statement stmnt = hbDatabase.GetStmnt();
+            ResultSet result = stmnt.executeQuery("select * from faves where _recID = "+recId+" and _userId = "+userId+";");
+            if (result.next() == false)
+            {
+                System.out.println("Favorite does not exist");
+                exists = false;
+            }
+            else
+            {
+                System.out.println("Favorite exists");
+                exists = true;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception at SearchModel, Function VerifyFavorite: " + e);
+        }
+        
+        return exists;
     }
 }

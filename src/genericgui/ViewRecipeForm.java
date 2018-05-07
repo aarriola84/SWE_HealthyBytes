@@ -14,13 +14,14 @@ public class ViewRecipeForm extends VBox
     //data
     private ImageView recipeIV;
     private TextArea recipeInfo = new TextArea();
+    private String color = "#af85a2";
     
     //constructor
     public ViewRecipeForm(Image img, String info)
     {
         //this box settings
         this.setSpacing(10);
-        this.setStyle("-fx-background-color: #af85a2");
+        this.setStyle("-fx-background-color: " + color);
         //set image
         recipeIV = new ImageView(img);
         //set textarea
@@ -31,5 +32,23 @@ public class ViewRecipeForm extends VBox
         //add objects to this Form
         this.getChildren().addAll(recipeIV, recipeInfo);
         this.setAlignment(Pos.TOP_CENTER);
+    }
+    
+    //properties
+    /**
+     * @return the color
+     */
+    public String GetColor()
+    {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void SetColor(String color)
+    {
+        this.color = color;
+        this.setStyle("-fx-background-color: " + color);
     }
 }

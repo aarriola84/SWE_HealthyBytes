@@ -56,7 +56,7 @@ public class RecipeListForm extends GridPane
     //constructor
     public RecipeListForm()
     {
-        listView.setPrefSize(350,400);
+        listView.setPrefSize(300,400);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         this.setAlignment(Pos.CENTER);
         listPane.setStyle("-fx-background-color: white");
@@ -225,6 +225,10 @@ public class RecipeListForm extends GridPane
     }
     
     //functions
+    /**
+     * Sets the recipe names array used in the list view given a recipe array list.
+     * @param recipeList 
+     */
     public void SetNewTitles(ArrayList<Recipe> recipeList)
     {
         String[] titles = new String[recipeList.size()];
@@ -238,6 +242,10 @@ public class RecipeListForm extends GridPane
         listView.setItems(FXCollections.observableArrayList(foodTitles));
     }
     
+    /**
+     * Sets the description label array given an array list of recipes.
+     * @param recipeList 
+     */
     public void SetNewDescriptions(ArrayList<Recipe> recipeList)
     {
         Label[] desc = new Label[recipeList.size()];
@@ -248,5 +256,13 @@ public class RecipeListForm extends GridPane
             i++;
         }
         foodDescription2 = desc;
+    }
+    
+    /**
+     * Removes the FilterBox functionality of the RecipeListForm.
+     */
+    public void RemoveFilterBox()
+    {
+        imagehbox.getChildren().remove(filterBox);
     }
 }

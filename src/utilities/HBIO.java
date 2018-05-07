@@ -7,12 +7,8 @@ package utilities;
 
 import java.io.*;
 import java.sql.Blob;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
  * @author Matthew Rodriguez
  */
 public class HBIO
@@ -28,7 +24,7 @@ public class HBIO
                     new FileOutputStream(file, true)));
             /* Open the data file */
 
-        } catch (Exception e)
+        } catch (FileNotFoundException e)
         {
             System.out.println("Error:" + e);
         }
@@ -50,84 +46,93 @@ public class HBIO
             {
                 data += inputline.readLine() + "\n";
             }
-        } catch (Exception e)
+        } catch (IOException e)
         {
-
+            System.out.println("Exception at HBIO, Function OpenReadFromTextFile: " + e);
         }
         return data;
     }
 
-    public static String ConvertBlobToFile(String name, Blob blob, int type)
+    public static String ConvertBlobToFile(String name, int owner,Blob blob, int type)
     {
         String filepath = "";
         try
         {
             if (type == 1)
             {
-                filepath = "src/tempfiles/" + name + ".jpg";
-                InputStream in = blob.getBinaryStream();
-                OutputStream outputStream = new FileOutputStream(filepath);
-                int bytesRead = -1;
-                byte[] buffer = new byte[4096];
-                while ((bytesRead = in.read(buffer)) != -1)
+                filepath = "src/tempfiles/" + name + owner +".jpg";
+                OutputStream outputStream;
+                try (InputStream in = blob.getBinaryStream()) 
                 {
-                    outputStream.write(buffer, 0, bytesRead);
+                    outputStream = new FileOutputStream(filepath);
+                    int bytesRead = -1;
+                    byte[] buffer = new byte[4096];
+                    while ((bytesRead = in.read(buffer)) != -1)
+                    {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.close();
                 }
-                in.close();
-                outputStream.close();
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
+                
                 System.out.println("File saved");
-                filepath = "tempfiles/" + name + ".jpg";
+                filepath = "tempfiles/" + name + owner +".jpg";
                 return filepath;
             }
             else if (type == 2)
             {
-                filepath = "src/tempfiles/" + name + "Info.txt";
-                InputStream in = blob.getBinaryStream();
-                OutputStream outputStream = new FileOutputStream(filepath);
-                int bytesRead = -1;
-                byte[] buffer = new byte[4096];
-                while ((bytesRead = in.read(buffer)) != -1)
-                {
-                    outputStream.write(buffer, 0, bytesRead);
+                filepath = "src/tempfiles/" + name + owner +"Info.txt";
+                OutputStream outputStream;
+                try (InputStream in = blob.getBinaryStream()) {
+                    outputStream = new FileOutputStream(filepath);
+                    int bytesRead = -1;
+                    byte[] buffer = new byte[4096];
+                    while ((bytesRead = in.read(buffer)) != -1)
+                    {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.close();
                 }
-                in.close();
-                outputStream.close();
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
+                
                 System.out.println("File saved");
                 return filepath;
             }
             else
             {
-                filepath = "src/tempfiles/" + name + "Desc.txt";
-                InputStream in = blob.getBinaryStream();
-                OutputStream outputStream = new FileOutputStream(filepath);
-                int bytesRead = -1;
-                byte[] buffer = new byte[4096];
-                while ((bytesRead = in.read(buffer)) != -1)
+                filepath = "src/tempfiles/" + name + owner +"Desc.txt";
+                OutputStream outputStream;
+                try (InputStream in = blob.getBinaryStream())
                 {
-                    outputStream.write(buffer, 0, bytesRead);
+                    outputStream = new FileOutputStream(filepath);
+                    int bytesRead = -1;
+                    byte[] buffer = new byte[4096];
+                    while ((bytesRead = in.read(buffer)) != -1)
+                    {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.close();
                 }
-                in.close();
-                outputStream.close();
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
                 System.out.println("File saved");
                 return filepath;
             }
 
-        } catch (SQLException ex)
+        }
+        catch (Exception e)
         {
-            Logger.getLogger(HBIO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex)
-        {
-            Logger.getLogger(HBIO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
-        {
-            Logger.getLogger(HBIO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Exception at HBIO, Function ConvertBlobToFile: " + e);
         }
         
         return filepath;
-    }
-
-    public void ConvertBlobToImage()
-    {
-        
     }
 }

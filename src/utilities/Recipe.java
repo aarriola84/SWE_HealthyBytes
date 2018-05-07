@@ -208,20 +208,23 @@ public class Recipe
     {
         try
         {
+            System.out.println(path);
             File f = new File("src/" + path);
             if (f.exists() && !f.isDirectory())
             {
-                img = new Image(path);
-            } else
+                img = new Image(f.toURI().toString());
+            } 
+            else
             {
                 System.out.println(f.canRead());
                 System.out.println(f.exists());
                 System.out.println(f.isDirectory());
                 System.out.println(path + " File does not exist!");
             }
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
-            System.out.println("Exception: " + e);
+            System.out.println("Exception at Recipe, Function CreateImage: " + e);
         }
     }
 }

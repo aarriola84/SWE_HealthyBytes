@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import myrecipes.MyRecipesController;
 
 /**
  * @author Alexis Arriola
@@ -21,16 +22,18 @@ public class MainMenuController
     //views
     private MainMenuView mainMenuView;
     
-    //model
+    //other controllers
+    MyRecipesController myRecipesController;
     
     //constructor
-    public MainMenuController(Stage mainStage, MainMenuView mainMenuView, Scene loginScene, Scene searchScene, Scene myRecipesScene)
+    public MainMenuController(Stage mainStage, MainMenuView mainMenuView, Scene loginScene, Scene searchScene, Scene myRecipesScene, MyRecipesController myRecipesController)
     {
         this.mainStage = mainStage;
         this.mainMenuView = mainMenuView;
         this.loginScene = loginScene;
         this.searchScene = searchScene;
         this.myRecipesScene = myRecipesScene;
+        this.myRecipesController = myRecipesController;
     }
     
     public void attachHandlers()
@@ -41,7 +44,7 @@ public class MainMenuController
                 {
                      public void handle(ActionEvent event)
                      {
-                             mainStage.setScene(loginScene);
+                         mainStage.setScene(loginScene);
                      }
                 });
         mainMenuView.GetMainMenuForm().GetSearchBtn().setOnAction(
@@ -49,7 +52,7 @@ public class MainMenuController
                 {
                      public void handle(ActionEvent event)
                      {
-                             mainStage.setScene(searchScene);
+                         mainStage.setScene(searchScene);
                      }
                 });
         mainMenuView.GetMainMenuForm().GetMyRecipesBtn().setOnAction(
@@ -57,7 +60,8 @@ public class MainMenuController
                 {
                      public void handle(ActionEvent event)
                      {
-                             mainStage.setScene(myRecipesScene);
+                         myRecipesController.UpdateRecipeView();
+                         mainStage.setScene(myRecipesScene);
                      }
                 });
     }

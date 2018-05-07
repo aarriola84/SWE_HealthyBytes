@@ -1,7 +1,6 @@
 package search;
 
 import genericgui.Banner;
-import genericgui.FilterBox;
 import genericgui.RecipeListForm;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;

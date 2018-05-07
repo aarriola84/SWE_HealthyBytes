@@ -37,6 +37,9 @@ public class MyRecipesView extends BorderPane
         hbBanner.ChangeColor("#8e887d","#b2aa9b");
         hbBanner.GetTitle().setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 36));
         
+        //modify the recipe list form
+        recipeListForm.RemoveFilterBox();
+        
         //set objects to borderpane
         this.setBackground(background);
         this.setCenter(recipeListForm);
