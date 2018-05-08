@@ -39,7 +39,6 @@ public class EmailForm extends GridPane
     private Button action1 = new Button("Choose a file...");
     private Button action2 = new Button("Choose files...");
     private Button action3 = new Button("Send Email");
-    private Button action4 = new Button("Return to My Recipes");
     private Stage myStage;
     
     VBox labelandtextHolder = new VBox(10);
@@ -211,22 +210,6 @@ public class EmailForm extends GridPane
         this.action3 = button;
     }
     
-    /**
-     * @return the action4
-     */
-    public Button GetAction4()
-    {
-        return action4;
-    }
-
-    /**
-     * @param action4 the action4 to set
-     */
-    public void SetAction4(Button action4)
-    {
-        this.action4 = action4;
-    }
-    
     public void SetStage(Stage myStage)
     {
         this.myStage = myStage;
@@ -235,7 +218,7 @@ public class EmailForm extends GridPane
       public EmailForm(Recipe recipe)
     {
         labelandtextHolder.getChildren().addAll(titleemailLabel,toAddressLabel,toAddressTF,subjectLabel,subjectTF,messageLabel,messageTA);
-        buttonHolder.getChildren().addAll(action1,action2,action3,action4);
+        buttonHolder.getChildren().addAll(action1,action2,action3);
         this.add(labelandtextHolder, 0, 0);
         this.add(buttonHolder,0,1);
         this.setAlignment(Pos.CENTER);

@@ -24,6 +24,9 @@ public class ViewRecipeForm extends VBox
         this.setStyle("-fx-background-color: " + color);
         //set image
         recipeIV = new ImageView(img);
+        recipeIV.setFitHeight(300);
+        recipeIV.setFitWidth(300);
+        
         //set textarea
         recipeInfo.setPrefHeight(500);
         recipeInfo.setEditable(false);

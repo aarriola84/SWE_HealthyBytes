@@ -147,17 +147,6 @@ public class EmailController
                 emailView.GetEmailForm().ClearFields();
             }    
         });
-        
-        //Return to My Recipes
-        emailView.GetEmailForm().GetAction4().setOnAction(new EventHandler <ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent event)
-            {
-               // Return to My Recipes Screen
-                System.out.println("No Functionality Given Yet.");
-            }    
-        });
        
         //This section most likely needed to be moved to login package
         //Authentication Form Buttons
