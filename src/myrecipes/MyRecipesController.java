@@ -88,6 +88,7 @@ public class MyRecipesController
                              public void handle(WindowEvent we) 
                              {
                                  UpdateRecipeView();
+                                 UpdateVisualization();
                                  createStage.close();
                              }
                          });
@@ -143,5 +144,15 @@ public class MyRecipesController
         myRecipesModel.GetFavoriteRecipes();
         myRecipesView.GetRecipeListForm().SetNewTitles(myRecipesModel.GetRecipes());
         myRecipesView.GetRecipeListForm().SetNewDescriptions(myRecipesModel.GetRecipes());
+    }
+    
+    public void UpdateVisualization()
+    {
+        myRecipesModel.GetLikedFavorites();
+        String[] names = myRecipesModel.GetTopRecipeNames();
+        int[] counts = myRecipesModel.GetTopRecipeCounts();
+        myRecipesView.GetRecipeListForm().GetBarChart().SetTopFiveNames(names);
+        myRecipesView.GetRecipeListForm().GetBarChart().SetFavoriteCounts(counts);
+        myRecipesView.GetRecipeListForm().GetBarChart().UpdateGraph();
     }
 }

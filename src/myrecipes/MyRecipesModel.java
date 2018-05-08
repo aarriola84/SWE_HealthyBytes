@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import utilities.ActiveUser;
+import utilities.Favorite;
 import utilities.HBIO;
 import utilities.Recipe;
 
@@ -18,8 +19,11 @@ public class MyRecipesModel
     //data
     private Database hbDatabase = Database.GetSingletonOfdatabase();
     private ArrayList<Recipe> recipes = new ArrayList<>();
+    private ArrayList<Favorite> favorites = new ArrayList<>();
     private Recipe currentRecipe;
     private ActiveUser activeUser;
+    String[] top5names = new String[5];
+    int[] top5counts = new int[5];
     
     //properties
     /**
@@ -54,7 +58,26 @@ public class MyRecipesModel
         this.currentRecipe = currentRecipe;
     }
     
+    /**
+     * @return the favorites
+     */
+    public ArrayList<Favorite> GetFavorites()
+    {
+        return favorites;
+    }
+
+    /**
+     * @param favorites the favorites to set
+     */
+    public void SetFavorites(ArrayList<Favorite> favorites)
+    {
+        this.favorites = favorites;
+    }
+    
     //functions
+    /**
+     * Gets the current users favorite recipes from the database and stores them into the recipe array list.
+     */
     public void GetFavoriteRecipes()
     {
         activeUser = ActiveUser.GetSingletonUser();
@@ -138,6 +161,78 @@ public class MyRecipesModel
         }
     }
     
+    /**
+     * Gets the name and favorite count of each recipe with favorites greater than 0 which are stored in the favorites list.
+     */
+    public void GetLikedFavorites()
+    {
+        activeUser = ActiveUser.GetSingletonUser();
+        String name;
+        int favCount;
+        int count = 0;
+
+        favorites.clear();
+        try
+        {
+            Statement stmnt = hbDatabase.GetStmnt();
+            ResultSet result = stmnt.executeQuery("select name, fave_count from recipes where fave_count > 0 " + "order by fave_count desc;");
+            
+            if (result.next() == false)
+            {
+                System.out.println("No Recipes Found");
+            }
+            else
+            {
+                System.out.println("Found Recipes");
+                
+                //get the info from resultset
+                name = result.getString("name");
+                favCount = result.getInt("fave_count");
+                //create the new favorite
+                Favorite newFavorite = new Favorite(name, favCount);
+                //add recipe to the recipe array
+                favorites.add(newFavorite);
+                
+                if (count < 5)
+                {
+                    top5names[count] = newFavorite.GetName();
+                    top5counts[count] = newFavorite.GetCount();
+                    count++;
+                }
+                System.out.println(name);
+                
+                //continue to see if there are more
+                while (result.next())
+                {
+                    //get the info from resultset
+                    name = result.getString("name");
+                    favCount = result.getInt("fave_count");
+                    //create the new favorite
+                    Favorite diffFavorite = new Favorite(name, favCount);
+                    //add recipe to the recipe array
+                    favorites.add(diffFavorite);
+                    
+                    if (count < 5)
+                    {
+                        top5names[count] = diffFavorite.GetName();
+                        top5counts[count] = diffFavorite.GetCount();
+                        count++;
+                    }
+                    System.out.println(name);
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Exception at MyRecipesModel, Function GetLikedRecipes: " + e);
+        }
+    }
+    
+    /**
+     * Finds recipe from recipe array list given an index.
+     * @param index
+     * @return 
+     */
     public Recipe FindRecipe(int index)
     {
         Recipe viewRecipe = null;
@@ -146,6 +241,12 @@ public class MyRecipesModel
 
         return viewRecipe;
     }
+    
+    /**
+     * Finds recipe from recipe array list given a recipe name.
+     * @param name
+     * @return 
+     */
     public Recipe FindRecipe(String name)
     {
         Recipe viewRecipe = null;
@@ -155,5 +256,23 @@ public class MyRecipesModel
                 viewRecipe = recipe;
         }
         return viewRecipe;
+    }
+    
+    /**
+     * Gets the top 5 recipe names from favorites list.
+     * @return 
+     */
+    public String[] GetTopRecipeNames()
+    {  
+        return top5names;
+    }
+    
+    /**
+     * Gets the top 5 recipe counts from favorites list.
+     * @return 
+     */
+    public int[] GetTopRecipeCounts()
+    {
+        return top5counts;
     }
 }

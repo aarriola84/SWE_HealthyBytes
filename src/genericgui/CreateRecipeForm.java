@@ -32,6 +32,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import utilities.ActiveUser;
+import utilities.HBError;
 
 /**
  * @author Alexis Arriola
@@ -955,13 +956,16 @@ public class CreateRecipeForm extends VBox
                                      prepStmnt.executeUpdate();
                                      //favorite the recipe
                                      FavoriteRecipe(recipename);
+                                     //alert
+                                     HBError.ErrorAlert("Information Dialog", "Recipe Creation", "The recipe has been created.");
                                      //close the recipe
                                      myStage.hide();
                                  }
                                  else
                                  {
                                      //alert for duplicate recipe
-                                     System.out.println("Duplicate Recipe!!");
+                                     HBError.ErrorAlert("Error", "Duplicate Recipe",
+                                     "You have already created a recipe by this name.");
                                  }
                              }
                              catch(FileNotFoundException | SQLException e)
@@ -971,7 +975,8 @@ public class CreateRecipeForm extends VBox
                          }
                          else
                          {
-                             System.out.println("Do an alert for blank fields here!");
+                             HBError.ErrorAlert("Error", "Empty text fields",
+                                     "Cannot enter empty text fields please fill out all fields.");
                          }
                      }
                 });

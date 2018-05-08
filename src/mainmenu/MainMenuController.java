@@ -62,6 +62,7 @@ public class MainMenuController
                      {
                          myRecipesController.UpdateRecipeView();
                          mainStage.setScene(myRecipesScene);
+                         myRecipesController.UpdateVisualization();
                      }
                 });
     }

@@ -116,11 +116,33 @@ public class HBBarChart extends VBox
     //update fields
     public void UpdateGraph()
     {
-        series[0].getData().add(new XYChart.Data(blank, GetFavoriteCounts()[0]));
-        series[1].getData().add(new XYChart.Data(blank, GetFavoriteCounts()[1]));
-        series[2].getData().add(new XYChart.Data(blank, GetFavoriteCounts()[2]));
-        series[3].getData().add(new XYChart.Data(blank, GetFavoriteCounts()[3]));
-        series[4].getData().add(new XYChart.Data(blank, GetFavoriteCounts()[4]));
+        try
+        {
+            //set names
+            if (topFiveNames != null)
+            {
+                series[0].setName(topFiveNames[0]);
+                series[1].setName(topFiveNames[1]);
+                series[2].setName(topFiveNames[2]);
+                series[3].setName(topFiveNames[3]);
+                series[4].setName(topFiveNames[4]);
+            }
+
+            //set counts
+            if (favoriteCounts != null)
+            {
+                series[0].getData().add(new XYChart.Data(blank, favoriteCounts[0]));
+                series[1].getData().add(new XYChart.Data(blank, favoriteCounts[1]));
+                series[2].getData().add(new XYChart.Data(blank, favoriteCounts[2]));
+                series[3].getData().add(new XYChart.Data(blank, favoriteCounts[3]));
+                series[4].getData().add(new XYChart.Data(blank, favoriteCounts[4]));
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception at HBBarChart, function UpdateGraph: " + e);
+        }
+        
     }
     
     
