@@ -11,10 +11,12 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import utilities.Recipe;
+import visualization.HBBarChart;
 
 /**
  * @author Matthew Rodriguez
@@ -50,17 +52,27 @@ public class RecipeListForm extends GridPane
     
     HBox imagehbox = new HBox(10);
     HBox buttonbox = new HBox(30);
+    VBox visualBox = new VBox(5);
     
     private FilterBox filterBox = new FilterBox();
+    
+    private HBBarChart barChart = new HBBarChart();
     
     //constructor
     public RecipeListForm()
     {
+        filterBox.setPrefWidth(300);
+        visualBox.setAlignment(Pos.CENTER);
+        visualBox.setStyle("-fx-background-color: white");
+        visualBox.setOpacity(.80);
+        visualBox.getChildren().add(barChart);
+        visualBox.setPrefWidth(300);
         listView.setPrefSize(300,400);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         this.setAlignment(Pos.CENTER);
         listPane.setStyle("-fx-background-color: white");
         listPane.setOpacity(.80);
+        listPane.setPrefWidth(300);
         listPane.setEditable(false);
         listPane.setWrapText(true);
         imagehbox.getChildren().addAll(filterBox,new ScrollPane(listView),listPane);
@@ -223,7 +235,22 @@ public class RecipeListForm extends GridPane
     {
         this.filterBox = filterBox;
     }
-    
+
+     /**
+     * @return the barChart
+     */
+    public HBBarChart GetBarChart()
+    {
+        return barChart;
+    }
+
+    /**
+     * @param barChart the barChart to set
+     */
+    public void SetBarChart(HBBarChart barChart)
+    {
+        this.barChart = barChart;
+    }
     //functions
     /**
      * Sets the recipe names array used in the list view given a recipe array list.
@@ -264,5 +291,11 @@ public class RecipeListForm extends GridPane
     public void RemoveFilterBox()
     {
         imagehbox.getChildren().remove(filterBox);
+    }
+    
+    public void AddVisualization()
+    {
+        imagehbox.getChildren().clear();
+        imagehbox.getChildren().addAll(visualBox,new ScrollPane(listView),listPane);
     }
 }

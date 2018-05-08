@@ -1,6 +1,5 @@
 package login;
 
-import genericgui.Banner;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -8,6 +7,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import networking.AuthenticationForm;
 
 /**
  * @author Alexis Arriola
@@ -22,6 +22,7 @@ public class LoginView extends BorderPane
     //forms
     private LoginForm loginForm = new LoginForm();
     private RegisterForm registerForm = new RegisterForm();
+    private AuthenticationForm authenticationForm = new AuthenticationForm();
     
     //constructor
     public LoginView()
@@ -63,6 +64,22 @@ public class LoginView extends BorderPane
         this.registerForm = registerForm;
     }
     
+    /**
+     * @return the autheticationForm
+     */
+    public AuthenticationForm GetAuthenticationForm()
+    {
+        return authenticationForm;
+    }
+
+    /**
+     * @param autheticationForm the autheticationForm to set
+     */
+    public void SetAuthenticationForm(AuthenticationForm autheticationForm)
+    {
+        this.authenticationForm = autheticationForm;
+    }
+    
     //functions
     public void SetLoginForm()
     {
@@ -74,5 +91,11 @@ public class LoginView extends BorderPane
     {
         this.getChildren().clear();
         this.setCenter(registerForm);
+    }
+    
+    public void SetAuthenticationForm()
+    {
+        this.getChildren().clear();
+        this.setCenter(authenticationForm);
     }
 }

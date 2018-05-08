@@ -31,7 +31,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import myrecipes.MyRecipesController;
 import utilities.ActiveUser;
 
 /**

@@ -47,6 +47,8 @@ public class LoginForm extends GridPane
         loginIV.setFitWidth(400);
         
         //change label
+        emailLabel.setStyle("-fx-background-color: white");
+        passLabel.setStyle("-fx-background-color: white");
         emailLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
         passLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
         

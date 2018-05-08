@@ -11,6 +11,9 @@ import mainmenu.MainMenuView;
 import myrecipes.MyRecipesController;
 import myrecipes.MyRecipesModel;
 import myrecipes.MyRecipesView;
+import networking.EmailController;
+import networking.EmailModel;
+import networking.EmailView;
 import search.SearchController;
 import search.SearchModel;
 import search.SearchView;
@@ -28,23 +31,27 @@ public class HealthyBytes extends Application
     MainMenuView mainMenuView = new MainMenuView();
     SearchView searchView = new SearchView();
     MyRecipesView myRecipesView = new MyRecipesView();
+    //EmailView emailView = new EmailView();
     
     //models
     LoginModel loginModel = new LoginModel();
     SearchModel searchModel = new SearchModel();
     MyRecipesModel myRecipesModel = new MyRecipesModel();
+    //EmailModel  emailModel = new EmailModel();
     
     //scenes
     Scene loginScene = new Scene(loginView, 900, 700);
     Scene mainMenuScene = new Scene(mainMenuView, 900, 700);
     Scene searchScene = new Scene(searchView, 900, 700);
     Scene myRecipesScene = new Scene(myRecipesView, 900, 700);
+    //Scene emailScene = new Scene(emailView, 900, 700);
     
     //controllers
     LoginController lc;
     MainMenuController mmc;
     SearchController sc;
     MyRecipesController mrc;
+    //EmailController ec;
     MainController mc;
     
     @Override
@@ -57,6 +64,7 @@ public class HealthyBytes extends Application
         lc = new LoginController(mainStage, loginView, loginModel, mainMenuScene);
         sc = new SearchController(mainStage, searchView, searchModel, mainMenuScene);
         mrc = new MyRecipesController(mainStage, myRecipesView, myRecipesModel, mainMenuScene);
+        //ec = new EmailController(mainStage, emailView, emailModel, mainMenuScene);
         mmc = new MainMenuController(mainStage, mainMenuView, loginScene, searchScene, myRecipesScene, mrc);
         mc = new MainController(lc, mmc, sc, mrc);
         

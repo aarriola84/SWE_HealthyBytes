@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import utilities.ActiveUser;
+import utilities.HBError;
 import utilities.HBIO;
 import utilities.Recipe;
 
@@ -210,7 +211,7 @@ public class SearchModel
             if (VerifyFavorite(recId, userId))
             {
                 //alert user telling them they already have this recipe favorited
-                System.out.println("Already Favorited!!!");
+                HBError.ErrorAlert("Information Dialog", "Duplicate Favorite", "This recipe is already favorited");
             }
             else
             {
@@ -221,6 +222,9 @@ public class SearchModel
                 //increment the recipe's favorite count
                 sql = "update recipes set fave_count = fave_count + 1 where recipe_id = " + recId + ";";
                 stmnt.executeUpdate(sql);
+                //alert stating that the recipe has been favorited
+                HBError.ErrorAlert("Information Dialog", "Favorited Recipe",
+                        "You have favorited the recipe " + currentRecipe.GetName());
             }
             
         }

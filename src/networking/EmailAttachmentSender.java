@@ -82,7 +82,7 @@ public class EmailAttachmentSender {
 
 		// creates message part
 		MimeBodyPart messageBodyPart = new MimeBodyPart();
-		messageBodyPart.setContent(message, "text/html");
+		messageBodyPart.setContent(message, "text/plain");
 
 		// creates multi-part
 		Multipart multipart = new MimeMultipart();

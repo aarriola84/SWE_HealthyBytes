@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utilities.HBError;
 import utilities.Recipe;
 
 /**
@@ -54,7 +55,7 @@ public class SearchController
                          else
                          {
                              //some alert goes here
-                             System.out.println("no search fields where selected!");
+                             HBError.ErrorAlert("Information Dialog", "Empty Selections", "Please select some search options");
                          }
                          
                      }
@@ -83,7 +84,7 @@ public class SearchController
                          else
                          {
                              //alert about no recipe selection
-                             System.out.println("No recipe selected!");
+                             HBError.ErrorAlert("Information Dialog", "Empty Selection", "No recipe has been selected");
                          }
                      }
                 });
@@ -98,12 +99,11 @@ public class SearchController
                          {
                              Recipe viewRecipe = searchModel.FindRecipe(name);
                              searchModel.FavoriteRecipe(viewRecipe);
-                             //alert stating that the recipe has been favorited
                          }
                          else
                          {
                              //alert about no recipe selection
-                             System.out.println("No recipe selected!");
+                             HBError.ErrorAlert("Information Dialog", "Empty Selection", "No recipe has been selected");
                          }
                      }
                 });

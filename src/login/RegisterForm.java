@@ -49,14 +49,22 @@ public class RegisterForm extends GridPane
      */
     public RegisterForm()
     {
+        this.setVgap(3);
         //change fonts of labels
         titleLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.ITALIC, 40));
+        titleLabel.setStyle("-fx-background-color: white");
         errorLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        errorLabel.setStyle("-fx-background-color: white");
         fNameLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        fNameLabel.setStyle("-fx-background-color: white");
         lNameLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        lNameLabel.setStyle("-fx-background-color: white");
         usernameLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        usernameLabel.setStyle("-fx-background-color: white");
         passwordLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        passwordLabel.setStyle("-fx-background-color: white");
         dobLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        dobLabel.setStyle("-fx-background-color: white");
         
         labelTFVBox.getChildren().addAll(fNameLabel,fNameTF, lNameLabel, lNameTF,
                                          usernameLabel,usernameTF,passwordLabel,passwordTF, dobLabel, dobTF);

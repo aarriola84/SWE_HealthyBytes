@@ -39,6 +39,7 @@ public class MyRecipesView extends BorderPane
         
         //modify the recipe list form
         recipeListForm.RemoveFilterBox();
+        recipeListForm.AddVisualization();
         
         //set objects to borderpane
         this.setBackground(background);

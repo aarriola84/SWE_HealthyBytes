@@ -5,12 +5,16 @@
  */
 package networking;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  *
@@ -24,19 +28,27 @@ public class AuthenticationForm extends GridPane
     private TextField emailTF = new TextField();
     private TextField verificationTF = new TextField();
     private Button action1 = new Button ("Enter Code");
-    private Button action2 = new Button ("Return to Register Menu");
     
     VBox labelTextFieldBox = new VBox(10);
     HBox buttonBox = new HBox(5);
     
     public AuthenticationForm()
     {
+        this.setVgap(3);
+        //style the labels
+        titleLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.ITALIC, 40));
+        titleLabel.setStyle("-fx-background-color: white");
+        emailLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        emailLabel.setStyle("-fx-background-color: white");
+        verificationLabel.setFont(Font.font("Book Antiqua", FontWeight.BOLD, FontPosture.REGULAR, 16));
+        verificationLabel.setStyle("-fx-background-color: white");
         labelTextFieldBox.getChildren().addAll(emailLabel,emailTF,verificationLabel,verificationTF);
-        buttonBox.getChildren().addAll(action1,action2);
+        buttonBox.getChildren().addAll(action1);
         
         this.add(titleLabel, 0, 0);
         this.add(labelTextFieldBox,0,1);
         this.add(buttonBox, 0, 2);
+        this.setAlignment(Pos.CENTER);
     }
 
     /**
@@ -135,22 +147,6 @@ public class AuthenticationForm extends GridPane
         this.action1 = action1;
     }
 
-    /**
-     * @return the action2
-     */
-    public Button GetAction2()
-    {
-        return action2;
-    }
-
-    /**
-     * @param action2 the action2 to set
-     */
-    public void SetAction2(Button action2)
-    {
-        this.action2 = action2;
-    }
-    
     public void ClearFields()
     {
         emailTF.clear();

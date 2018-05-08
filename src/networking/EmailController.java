@@ -144,12 +144,12 @@ public class EmailController
                    }  
                 }
                 //Clear TextFields and Areas
-                emailView.GetEmailForm().clearFields();
+                emailView.GetEmailForm().ClearFields();
             }    
         });
         
         //Return to My Recipes
-        emailView.GetEmailForm().GetAction3().setOnAction(new EventHandler <ActionEvent>()
+        emailView.GetEmailForm().GetAction4().setOnAction(new EventHandler <ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
@@ -221,18 +221,6 @@ public class EmailController
                     emailView.GetAuthenticationForm().ClearFields();
                }
             }
-        });
-        
-        //Return to Login Form Button
-        emailView.GetAuthenticationForm().GetAction2().setOnAction(new EventHandler <ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                //Either Return to Login Screen or Register Screen
-                System.out.println("No Functionality Given Yet.");
-            }
-            
-        });     
+        });   
     }
 }

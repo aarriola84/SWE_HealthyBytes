@@ -24,13 +24,13 @@ public class EmailView extends BorderPane
     private Background background = new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
     //forms
-    private EmailForm emailForm = new EmailForm();
+    //private EmailForm emailForm = new EmailForm();
     private AuthenticationForm authenticationForm = new AuthenticationForm();
     
     public EmailView()
     {
         this.setBackground(background);
-        this.setCenter(emailForm);
+        //this.setCenter(emailForm);
     }
 
     /**
@@ -38,7 +38,8 @@ public class EmailView extends BorderPane
      */
     public EmailForm GetEmailForm()
     {
-        return emailForm;
+        //return emailForm;
+        return null;
     }
 
     /**
@@ -46,7 +47,7 @@ public class EmailView extends BorderPane
      */
     public void SetEmailForm(EmailForm emailForm)
     {
-        this.emailForm = emailForm;
+        //this.emailForm = emailForm;
     }
     
     /**
@@ -69,7 +70,7 @@ public class EmailView extends BorderPane
     public void SetEmailForm()
     {
         this.getChildren().clear();
-        this.setCenter(emailForm);
+        //this.setCenter(emailForm);
     }
 
     public void SetAuthenticationForm()

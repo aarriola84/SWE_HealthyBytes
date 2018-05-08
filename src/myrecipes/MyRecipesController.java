@@ -7,6 +7,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import networking.EmailForm;
+import utilities.HBError;
 import utilities.Recipe;
 
 /**
@@ -18,6 +20,7 @@ public class MyRecipesController
     Stage mainStage;
     Stage recipeStage;
     Stage createStage;
+    Stage emailStage;
     
     //scenes
     Scene mainMenuScene;
@@ -26,6 +29,7 @@ public class MyRecipesController
     private MyRecipesView myRecipesView;
     private ViewRecipeForm viewRecipeForm;
     private CreateRecipeForm createRecipeForm;
+    private EmailForm emailForm;
     
     //model
     private MyRecipesModel myRecipesModel;
@@ -66,7 +70,7 @@ public class MyRecipesController
                          else
                          {
                              //alert about no recipe selection
-                             System.out.println("No recipe selected!");
+                             HBError.ErrorAlert("Information Dialog", "Empty Selection", "No recipe has been selected");
                          }
                      }
                 });
@@ -94,6 +98,35 @@ public class MyRecipesController
                          createRecipeForm.SetStage(createStage);
                      }
                 });
+        //share recipe button
+        myRecipesView.GetRecipeListForm().GetAction3().setOnAction(
+                new EventHandler<ActionEvent>()
+                {
+                     public void handle(ActionEvent event)
+                     {
+                         String name = myRecipesView.GetRecipeListForm().GetListView().getSelectionModel().getSelectedItem();
+                         if (name != null)
+                         {
+                             int index = myRecipesView.GetRecipeListForm().GetListView().getSelectionModel().getSelectedIndex();
+                             Recipe viewRecipe = myRecipesModel.FindRecipe(index);
+                             viewRecipe.CreateImage();
+                             emailForm = new EmailForm(viewRecipe);
+                             Scene currentScene = new Scene(emailForm, 600, 550);
+                             emailStage = new Stage();
+                             emailStage.setResizable(false);
+                             emailStage.setTitle("Share Recipe");
+                             emailStage.setScene(currentScene);
+                             emailStage.show();
+                             emailForm.SetStage(emailStage);
+                         }
+                         else
+                         {
+                             //alert about no recipe selection
+                             HBError.ErrorAlert("Information Dialog", "Empty Selection", "No recipe has been selected");
+                         }
+                     }
+                });
+        
         //return to main menu
         myRecipesView.GetRecipeListForm().GetAction4().setOnAction(
                 new EventHandler<ActionEvent>()
